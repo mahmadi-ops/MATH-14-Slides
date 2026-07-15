@@ -89,11 +89,14 @@
   display: block;
   border: none;
 }
-/* Figure 2 shares its slide with two questions, so keep it moderate */
+/* Figure 2 shares its slide with two questions, so keep it moderate.
+   Square frame so the (square) construction fills it and stays centered,
+   with a gap below before the questions. */
 .reveal iframe#fig2-work-paths {
-  width: min(70vw, 720px) !important;
-  height: 46vh !important;
-  margin: 0 auto;
+  width: 52vh !important;
+  height: 52vh !important;
+  max-width: 90vw;
+  margin: 0 auto 1.6em !important;
   display: block;
   border: none;
 }
