@@ -1,0 +1,136 @@
+/* ==== MATH 14 slides — custom look ==================================== */
+/* Loaded after the reveal.js theme, so these override it.                */
+
+:root {
+  /* Times everywhere */
+  --r-main-font: "Times New Roman", Times, Georgia, serif;
+  --r-heading-font: "Times New Roman", Times, Georgia, serif;
+
+  /* a little smaller so full statements fit on one slide */
+  --r-main-font-size: 27px;
+
+  /* GeoGebra-matched palette: indigo (GeoGebra brand) + blue/red from the graphs */
+  --r-background-color: #ffffff;   /* clean white, like the GeoGebra canvas */
+  --r-main-color: #1f2328;         /* near-black body text */
+  --r-heading-color: #5b57d1;      /* GeoGebra indigo */
+  --r-link-color: #1565c0;         /* GeoGebra blue */
+
+  /* accent hues for callout boxes */
+  --accent-theorem: #5b57d1;       /* indigo */
+  --accent-definition: #1565c0;    /* blue */
+  --accent-example: #c0392b;       /* red (from the graph curves) */
+}
+
+.reveal { font-family: var(--r-main-font); }
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal .title {
+  font-family: var(--r-heading-font);
+  color: var(--r-heading-color);
+  text-transform: none;      /* keep normal capitalization, not ALL CAPS */
+  letter-spacing: normal;
+  font-weight: 700;
+}
+
+.reveal a { color: var(--r-link-color); }
+
+/* ---- callout boxes: clean tinted panels with a colored left rule ---- */
+.reveal .theorem-like,
+.reveal .definition-like,
+.reveal .example-like,
+.reveal .project-like {
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  border-radius: 8px;
+  padding: 0.6em 0.9em;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.reveal .theorem-like {
+  background: #f0f0fb;
+  border-left: 6px solid var(--accent-theorem);
+}
+.reveal .definition-like {
+  background: #eaf2fb;
+  border-left: 6px solid var(--accent-definition);
+}
+.reveal .example-like {
+  background: #fbeeec;
+  border-left: 6px solid var(--accent-example);
+}
+
+/* box heading labels pick up the accent color */
+.reveal .theorem-like .heading .type,
+.reveal .theorem-like .heading .title { color: var(--accent-theorem); }
+.reveal .definition-like .heading .type,
+.reveal .definition-like .heading .title { color: var(--accent-definition); }
+.reveal .example-like .heading .type,
+.reveal .example-like .heading .title { color: var(--accent-example); }
+
+/* ---- figures: scale to fit the slide instead of overflowing ---- */
+.reveal .image-box img,
+.reveal figure img.contained {
+  max-height: 66vh;
+  width: auto;
+  height: auto;
+  border: none !important;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* GeoGebra interactive: make it fill most of the slide, centered */
+.reveal .interactive-iframe-container { width: 100% !important; text-align: center; }
+.reveal iframe#ggb-two-paths {
+  width: min(97vw, 1060px) !important;
+  height: 82vh !important;
+  margin: 0 auto;
+  display: block;
+  border: none;
+}
+/* Figure 2 shares its slide with two questions, so keep it moderate.
+   Square frame so the (square) construction fills it and stays centered,
+   with a gap below before the questions. */
+.reveal iframe#fig2-work-paths {
+  width: 44vh !important;
+  height: 44vh !important;
+  max-width: 90vw;
+  margin: 0.1em auto 0.5em !important;
+  display: block;
+  border: none;
+}
+/* Figure 2 legend: the first three paragraphs on the Figure 2 slide are the
+   legend lines. Scope to that slide via its iframe, tighten, and color to match
+   the construction (MathJax spans forced to the same color). */
+.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(1),
+.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(2),
+.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(3) {
+  margin: 0.05em 0 !important;
+  line-height: 1.15;
+  font-size: 0.9em;
+  text-align: center;
+}
+.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(1),
+.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(1) * { color: #cc0000 !important; }
+.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(2),
+.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(2) * { color: #009900 !important; }
+.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(3),
+.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(3) * { color: #000000 !important; }
+/* hide the little "open in new tab" icon that renders as an empty box */
+.reveal .interactive-iframe-container__opener { display: none !important; }
+/* keep the figure block from adding its own height cap */
+.reveal figure.figure-like { margin: 0; }
+
+.reveal figcaption {
+  font-size: 0.7em;
+  color: #55606a;
+  font-style: italic;
+}
+
+/* tighten vertical spacing so dense statements fit on one slide */
+.reveal .theorem-like p,
+.reveal .definition-like p,
+.reveal .example-like p { margin: 0.35em 0; }
+
+.reveal .slides section > div[align="left"] > p:first-child { margin-top: 0.2em; }
