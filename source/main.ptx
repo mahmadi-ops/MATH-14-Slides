@@ -204,6 +204,8 @@
               setLabelVisible("C_2",true)
               evalCommand("SetViewDirection(Vector((1.2,-2.6,0.9)))")
               setAxesVisible(true,true,true)
+              setWidth(1040)
+              setHeight(500)
             </slate>
           </interactive>
         </figure>

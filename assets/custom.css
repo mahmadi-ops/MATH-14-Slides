@@ -83,8 +83,8 @@
 /* GeoGebra interactive: make it fill most of the slide, centered */
 .reveal .interactive-iframe-container { width: 100% !important; text-align: center; }
 .reveal iframe#ggb-two-paths {
-  width: min(92vw, 1250px) !important;
-  height: 74vh !important;
+  width: min(97vw, 1060px) !important;
+  height: 82vh !important;
   margin: 0 auto;
   display: block;
   border: none;
