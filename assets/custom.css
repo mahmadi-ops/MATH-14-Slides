@@ -9,16 +9,16 @@
   /* a little smaller so full statements fit on one slide */
   --r-main-font-size: 27px;
 
-  /* academic palette */
-  --r-background-color: #faf8f3;   /* warm off-white */
+  /* GeoGebra-matched palette: indigo (GeoGebra brand) + blue/red from the graphs */
+  --r-background-color: #ffffff;   /* clean white, like the GeoGebra canvas */
   --r-main-color: #1f2328;         /* near-black body text */
-  --r-heading-color: #14324f;      /* deep navy headings */
-  --r-link-color: #0e7c66;         /* teal accent */
+  --r-heading-color: #5b57d1;      /* GeoGebra indigo */
+  --r-link-color: #1565c0;         /* GeoGebra blue */
 
   /* accent hues for callout boxes */
-  --accent-theorem: #14324f;       /* navy */
-  --accent-definition: #0e7c66;    /* teal */
-  --accent-example: #9a5b00;       /* amber */
+  --accent-theorem: #5b57d1;       /* indigo */
+  --accent-definition: #1565c0;    /* blue */
+  --accent-example: #c0392b;       /* red (from the graph curves) */
 }
 
 .reveal { font-family: var(--r-main-font); }
@@ -49,15 +49,15 @@
 }
 
 .reveal .theorem-like {
-  background: #eef3f8;
+  background: #f0f0fb;
   border-left: 6px solid var(--accent-theorem);
 }
 .reveal .definition-like {
-  background: #e9f5f1;
+  background: #eaf2fb;
   border-left: 6px solid var(--accent-definition);
 }
 .reveal .example-like {
-  background: #fbf3e6;
+  background: #fbeeec;
   border-left: 6px solid var(--accent-example);
 }
 

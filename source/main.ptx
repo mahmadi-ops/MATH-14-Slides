@@ -177,44 +177,35 @@
       <slide>
         <title>The Two Paths <m>C_1</m> and <m>C_2</m></title>
 
-        <!-- 3D figure: helix C1 and vertical segment C2, rendered from TikZ/pgfplots.
-             (A JSXGraph interactive version does not embed cleanly in reveal.js
-             slides, so the static 3D render is used here.) -->
+        <!-- 3D figure: GeoGebra interactive reproducing the helix C1 and line C2,
+             styled to match the author's GeoGebra materials (black path, red
+             accents, grey plane). Commands are GeoGebra API calls, one per line;
+             PreTeXt supplies the "ggbApplet." prefix automatically. -->
         <figure>
-          <caption>The helix <m>C_1</m> and the straight-line path <m>C_2</m> from <m>(1,0,0)</m> to <m>(1,0,2\pi)</m></caption>
-            <image xml:id="img-helix-tikz" width="60%">
-              <shortdescription>Helix winding once around the z-axis from (1,0,0) up to (1,0,2 pi), with a vertical red segment joining the two endpoints</shortdescription>
-              <latex-image>
-                \begin{tikzpicture}
-                  \begin{axis}[
-                      width=9cm,
-                      view={115}{18},
-                      xlabel={$x$}, ylabel={$y$}, zlabel={$z$},
-                      xtick={-1,0,1}, ytick={-1,0,1}, ztick={0,2,4,6,8},
-                      zmin=0, zmax=8,
-                      enlargelimits=0.15,
-                      axis lines=box,
-                      grid=major,
-                      grid style={gray!25},
-                      tick label style={font=\scriptsize},
-                      label style={font=\small}
-                    ]
-                    % C1: helix r(t) = (cos t, sin t, t)
-                    \addplot3[blue, very thick, domain=0:6.2832, samples=120, samples y=0]
-                      ({cos(deg(x))}, {sin(deg(x))}, {x});
-                    % direction arrow on the helix
-                    \addplot3[blue, very thick, -{Stealth}, domain=3.04:3.14, samples=2, samples y=0]
-                      ({cos(deg(x))}, {sin(deg(x))}, {x});
-                    % C2: vertical segment from (1,0,0) to (1,0,2 pi)
-                    \addplot3[red, very thick, -{Stealth}] coordinates {(1,0,0) (1,0,6.2832)};
-                    % endpoints and labels
-                    \addplot3[only marks, mark=*, mark size=1.5pt] coordinates {(1,0,0) (1,0,6.2832)};
-                    \node[anchor=west, font=\small] at (axis cs:1,0,0) {$(1,0,0)$};
-                    \node[anchor=south west, font=\small, green!60!black] at (axis cs:1,0,6.2832) {$(1,0,2\pi)$};
-                  \end{axis}
-                \end{tikzpicture}
-              </latex-image>
-            </image>
+          <caption>The helix <m>C_1</m> and the straight-line path <m>C_2</m> from <m>(1,0,0)</m> to <m>(1,0,2\pi)</m> (drag to rotate)</caption>
+          <interactive xml:id="ggb-two-paths" platform="geogebra" width="70%" aspect="4:3">
+            <slate xml:id="ggb-two-paths-slate" surface="geogebra">
+              setPerspective("T")
+              evalCommand("A=(1,0,0)")
+              evalCommand("B=(1,0,2*pi)")
+              evalCommand("C_1=Curve(cos(t),sin(t),t,t,0,2*pi)")
+              evalCommand("C_2=Segment(A,B)")
+              setColor("C_1",25,25,25)
+              setLineThickness("C_1",5)
+              setColor("C_2",200,40,40)
+              setLineThickness("C_2",5)
+              setColor("A",25,25,25)
+              setColor("B",25,25,25)
+              setPointSize("A",5)
+              setPointSize("B",5)
+              setLabelVisible("A",true)
+              setLabelVisible("B",true)
+              setLabelVisible("C_1",true)
+              setLabelVisible("C_2",true)
+              evalCommand("SetViewDirection(Vector((1.2,-2.6,0.9)))")
+              setAxesVisible(true,true,true)
+            </slate>
+          </interactive>
         </figure>
       </slide>
 
