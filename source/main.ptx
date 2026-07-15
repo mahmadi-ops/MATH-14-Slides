@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pretext xml:lang="en-US">
+
+  <docinfo>
+    <macros>
+      \newcommand{\vF}{\mathbf{F}}
+      \newcommand{\vr}{\mathbf{r}}
+      \newcommand{\vi}{\mathbf{i}}
+      \newcommand{\vj}{\mathbf{j}}
+      \newcommand{\vk}{\mathbf{k}}
+    </macros>
+    <latex-image-preamble>
+      \usepackage{pgfplots}
+      \pgfplotsset{compat=1.18}
+      \usetikzlibrary{arrows.meta}
+    </latex-image-preamble>
+  </docinfo>
+
+  <slideshow>
+    <title>Path Independence, Conservative Fields, and Potential Functions</title>
+    <subtitle>Section 16.3</subtitle>
+
+    <frontmatter>
+      <titlepage>
+        <author>
+          <personname>Mehdi Ahmadi</personname>
+          <institution>Santa Clara University</institution>
+        </author>
+      </titlepage>
+    </frontmatter>
+
+    <section>
+      <title>Definitions and the Fundamental Theorem</title>
+
+      <slide>
+        <title>Smooth Curves and Potential Functions</title>
+
+        <p>
+          <alert>Reminder:</alert> A <term>smooth curve</term> has no sharp corners
+          or cusps; when the tangent vector turns, it does so continuously.
+        </p>
+
+        <definition>
+          <statement>
+            <p>
+              <ul>
+                <li>
+                  <p>
+                    If a vector field <m>\vF</m> can be written as <m>\vF = \nabla f</m>,
+                    where <m>f</m> is a scalar-valued function, then <m>f</m> is a
+                    <term>potential function</term>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <term>Piecewise smooth curves</term> are curves that are made up of
+                    finitely many smooth pieces.
+                  </p>
+                </li>
+              </ul>
+            </p>
+          </statement>
+        </definition>
+      </slide>
+
+      <slide>
+        <title>Line Integrals in Conservative Fields</title>
+
+        <theorem>
+          <title>Fundamental Theorem of Line Integrals</title>
+          <statement>
+            <p>
+              Let <m>C</m> be a smooth curve joining the point <m>A</m> to the point
+              <m>B</m> in the plane or in space and parametrized by <m>\vr(t)</m>.
+              Let <m>f</m> be a differentiable function with a continuous gradient
+              vector <m>\vF = \nabla f</m> on a domain <m>D</m> containing <m>C</m>.
+              Then
+              <me>
+                \int_C \vF \cdot d\vr = f(B) - f(A).
+              </me>
+            </p>
+          </statement>
+        </theorem>
+
+        <!-- 2D figure: chain-rule dependency diagram (PreFigure) -->
+        <figure>
+          <caption>Chain rule dependency diagram for <m>w = f(x,y,z)</m> with <m>x</m>, <m>y</m>, <m>z</m> depending on <m>t</m></caption>
+          <image xml:id="img-chain-rule" width="60%">
+            <shortdescription>Tree diagram showing w depending on x, y, z, each depending on t</shortdescription>
+            <prefigure xmlns="https://prefigure.org" label="chain-rule-diagram">
+              <diagram dimensions="(520, 320)" margins="5">
+                <coordinates bbox="(-4.5, -5.6, 11, 4)">
+                  <!-- edges: w to intermediate variables -->
+                  <line endpoints="((-0.15, 2.75), (-2.4, 0.8))" stroke="#0aa"/>
+                  <line endpoints="((0, 2.7), (0, 0.85))" stroke="#0aa"/>
+                  <line endpoints="((0.15, 2.75), (2.4, 0.8))" stroke="#0aa"/>
+                  <!-- edges: intermediate variables to t -->
+                  <line endpoints="((-2.3, 0.3), (-0.15, -2.3))" stroke="#0aa"/>
+                  <line endpoints="((0, 0.3), (0, -2.3))" stroke="#0aa"/>
+                  <line endpoints="((2.3, 0.3), (0.15, -2.3))" stroke="#0aa"/>
+                  <!-- nodes -->
+                  <point p="(0, 3)" size="3" fill="#0aa" stroke="none"/>
+                  <point p="(-2.5, 0.55)" size="3" fill="#0aa" stroke="none"/>
+                  <point p="(0, 0.55)" size="3" fill="#0aa" stroke="none"/>
+                  <point p="(2.5, 0.55)" size="3" fill="#0aa" stroke="none"/>
+                  <point p="(0, -2.5)" size="3" fill="#0aa" stroke="none"/>
+                  <!-- node labels -->
+                  <label anchor="(0, 3.1)" alignment="n"><m>w = f(x,y,z)</m></label>
+                  <label anchor="(-2.7, 0.55)" alignment="w"><m>x</m></label>
+                  <label anchor="(0.2, 0.4)" alignment="se"><m>y</m></label>
+                  <label anchor="(2.7, 0.55)" alignment="e"><m>z</m></label>
+                  <label anchor="(0, -2.7)" alignment="s"><m>t</m></label>
+                  <!-- edge labels -->
+                  <label anchor="(-1.6, 2.1)" alignment="w"><m>\dfrac{\partial w}{\partial x}</m></label>
+                  <label anchor="(-0.15, 1.7)" alignment="w"><m>\dfrac{\partial w}{\partial y}</m></label>
+                  <label anchor="(1.6, 2.1)" alignment="e"><m>\dfrac{\partial w}{\partial z}</m></label>
+                  <label anchor="(-1.5, -1.1)" alignment="w"><m>\dfrac{dx}{dt}</m></label>
+                  <label anchor="(0.15, -0.9)" alignment="e"><m>\dfrac{dy}{dt}</m></label>
+                  <label anchor="(1.5, -1.1)" alignment="e"><m>\dfrac{dz}{dt}</m></label>
+                  <!-- side annotations -->
+                  <label anchor="(4.6, 3.2)" alignment="e">Dependent variable</label>
+                  <label anchor="(4.6, 0.55)" alignment="e">Intermediate variables</label>
+                  <label anchor="(4.6, -2.6)" alignment="e">Independent variable</label>
+                  <!-- resulting chain rule -->
+                  <label anchor="(0, -4)" alignment="s"><m>\dfrac{dw}{dt} = \dfrac{\partial w}{\partial x}\dfrac{dx}{dt} + \dfrac{\partial w}{\partial y}\dfrac{dy}{dt} + \dfrac{\partial w}{\partial z}\dfrac{dz}{dt}</m></label>
+                </coordinates>
+              </diagram>
+            </prefigure>
+          </image>
+        </figure>
+      </slide>
+    </section>
+
+    <section>
+      <title>Examples and Further Theorems</title>
+
+      <slide>
+        <title>Example: A Gradient Field over Two Paths</title>
+
+        <example>
+          <statement>
+            <p>
+              Consider the scalar-valued function
+              <m>f(x,y,z) = \dfrac{1}{\sqrt{x^2 + y^2 + z^2}}</m>.
+            </p>
+
+            <p>
+              <ol marker="A.">
+                <li>
+                  <p>Calculate the gradient vector field <m>\vF(x,y,z) = \nabla f</m>.</p>
+                </li>
+                <li>
+                  <p>
+                    Evaluate the line integral of the vector field
+                    <m>\vF(x,y,z) = \nabla f</m> over the following curve <m>C_1</m>
+                    parametrized as <m>\vr(t) = \cos(t)\,\vi + \sin(t)\,\vj + t\,\vk</m>
+                    from <m>(1,0,0)</m> to <m>(1,0,2\pi)</m>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    What is the result of <m>\displaystyle\int_{C_2} \vF \cdot d\vr</m>
+                    from <m>(1,0,0)</m> to <m>(1,0,2\pi)</m> where <m>C_2</m> is the
+                    line connecting the two points?
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+        </example>
+
+        <!-- 3D figure: helix C1 and vertical segment C2 -->
+        <!-- Interactive HTML version (JSXGraph, inline) for web output;
+             TikZ version below for LaTeX output -->
+        <figure>
+          <caption>The helix <m>C_1</m> and the straight-line path <m>C_2</m> from <m>(1,0,0)</m> to <m>(1,0,2\pi)</m></caption>
+          <sidebyside widths="50% 45%" valign="middle">
+            <interactive xml:id="interactive-helix" platform="jsxgraph" width="100%" aspect="1:1">
+              <slate xml:id="jsx-helix" surface="jsxgraph" aspect="1:1">
+                var board = JXG.JSXGraph.initBoard('jsx-helix', {
+                    boundingbox: [-9, 9, 9, -9],
+                    keepaspectratio: true,
+                    axis: false,
+                    showCopyright: false,
+                    showNavigation: false
+                });
+
+                var view = board.create('view3d',
+                    [[-6.5, -4.5], [13, 13],
+                     [[-1.5, 1.5], [-1.5, 1.5], [0, 2 * Math.PI]]],
+                    {
+                        projection: 'parallel',
+                        depthOrder: { enabled: true },
+                        xPlaneRear: { fillOpacity: 0.05 },
+                        yPlaneRear: { fillOpacity: 0.05 },
+                        az: { slider: { visible: false } },
+                        el: { slider: { visible: false } }
+                    });
+
+                // C1: the helix r(t) = (cos t, sin t, t)
+                view.create('curve3d', [
+                    function (t) { return Math.cos(t); },
+                    function (t) { return Math.sin(t); },
+                    function (t) { return t; },
+                    [0, 2 * Math.PI]
+                ], { strokeColor: '#1f77b4', strokeWidth: 3 });
+
+                // endpoints
+                var A = view.create('point3d', [1, 0, 0],
+                    { name: '(1,0,0)', size: 2, fixed: true,
+                      strokeColor: '#000', fillColor: '#000',
+                      label: { offset: [8, -6] } });
+                var B = view.create('point3d', [1, 0, 2 * Math.PI],
+                    { name: '(1,0,2&#960;)', size: 2, fixed: true,
+                      strokeColor: '#2ca02c', fillColor: '#2ca02c',
+                      label: { offset: [8, 6] } });
+
+                // C2: straight segment from A to B
+                view.create('line3d', [A, B],
+                    { straightFirst: false, straightLast: false,
+                      strokeColor: '#d62728', strokeWidth: 3 });
+              </slate>
+            </interactive>
+            <image xml:id="img-helix-tikz">
+              <shortdescription>Helix winding once around the z-axis from (1,0,0) up to (1,0,2 pi), with a vertical red segment joining the two endpoints</shortdescription>
+              <latex-image>
+                \begin{tikzpicture}
+                  \begin{axis}[
+                      width=9cm,
+                      view={115}{18},
+                      xlabel={$x$}, ylabel={$y$}, zlabel={$z$},
+                      xtick={-1,0,1}, ytick={-1,0,1}, ztick={0,2,4,6,8},
+                      zmin=0, zmax=8,
+                      enlargelimits=0.15,
+                      axis lines=box,
+                      grid=major,
+                      grid style={gray!25},
+                      tick label style={font=\scriptsize},
+                      label style={font=\small}
+                    ]
+                    % C1: helix r(t) = (cos t, sin t, t)
+                    \addplot3[blue, very thick, domain=0:6.2832, samples=120, samples y=0]
+                      ({cos(deg(x))}, {sin(deg(x))}, {x});
+                    % direction arrow on the helix
+                    \addplot3[blue, very thick, -{Stealth}, domain=3.04:3.14, samples=2, samples y=0]
+                      ({cos(deg(x))}, {sin(deg(x))}, {x});
+                    % C2: vertical segment from (1,0,0) to (1,0,2 pi)
+                    \addplot3[red, very thick, -{Stealth}] coordinates {(1,0,0) (1,0,6.2832)};
+                    % endpoints and labels
+                    \addplot3[only marks, mark=*, mark size=1.5pt] coordinates {(1,0,0) (1,0,6.2832)};
+                    \node[anchor=west, font=\small] at (axis cs:1,0,0) {$(1,0,0)$};
+                    \node[anchor=south west, font=\small, green!60!black] at (axis cs:1,0,6.2832) {$(1,0,2\pi)$};
+                  \end{axis}
+                \end{tikzpicture}
+              </latex-image>
+            </image>
+          </sidebyside>
+        </figure>
+      </slide>
+
+      <slide>
+        <title>Example: Finding a Potential Function</title>
+
+        <example>
+          <statement>
+            <p>
+              Consider the vector field <m>\vF = yz\,\vi + xz\,\vj + (xy + 2z)\,\vk</m>.
+            </p>
+
+            <p>
+              <ol marker="A.">
+                <li>
+                  <p>Find a function <m>f</m> such that <m>\vF = \nabla f</m>.</p>
+                </li>
+                <li>
+                  <p>
+                    Use the solution of part (A) to calculate the line integral from
+                    <m>(1,0,-2)</m> to <m>(4,6,3)</m>.
+                  </p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+        </example>
+      </slide>
+
+      <slide>
+        <title>Conservative Fields are Gradient Fields</title>
+
+        <theorem>
+          <title>Conservative Fields are Gradient Fields</title>
+          <statement>
+            <p>
+              Let <m>\vF = M\,\vi + N\,\vj + P\,\vk</m> be a vector field whose
+              components are continuous throughout an open connected region <m>D</m>
+              in space. Then <m>\vF</m> is conservative if and only if <m>\vF</m> is a
+              gradient field <m>\nabla f</m> for a differentiable function <m>f</m>.
+            </p>
+          </statement>
+        </theorem>
+      </slide>
+
+      <slide>
+        <title>Loop Property of Conservative Fields</title>
+
+        <theorem>
+          <title>Loop Property of Conservative Fields</title>
+          <statement>
+            <p>The following statements are equivalent.</p>
+
+            <p>
+              <ol>
+                <li>
+                  <p>
+                    <m>\displaystyle\oint_C \vF \cdot d\vr = 0</m> around every loop
+                    (that is, closed curve <m>C</m>) in <m>D</m>.
+                  </p>
+                </li>
+                <li>
+                  <p>The field <m>\vF</m> is conservative on <m>D</m>.</p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+        </theorem>
+      </slide>
+
+      <slide>
+        <title>Example: Two Ways to Compute a Line Integral</title>
+
+        <example>
+          <statement>
+            <p>
+              Suppose that <m>f(x,y) = x^3 y^2</m> and calculate the line integral of
+              the vector field <m>\vF = \nabla f</m>, along the line connecting
+              <m>(-1,1)</m> and <m>(1,1)</m> in the two following ways.
+            </p>
+
+            <p>
+              <ol marker="A.">
+                <li>
+                  <p>
+                    By finding the vector field <m>\vF</m> and parametrizing the line
+                    connecting the two points.
+                  </p>
+                </li>
+                <li>
+                  <p>By using the potential function <m>f(x,y)</m>.</p>
+                </li>
+              </ol>
+            </p>
+          </statement>
+        </example>
+      </slide>
+
+      <slide>
+        <title>Example: Is the Field Conservative?</title>
+
+        <example>
+          <statement>
+            <p>
+              Consider the vector field <m>\vF = yz\,\vi + xz\,\vj + (xy + 2z)\,\vk</m>.
+              Is this field a conservative field?
+            </p>
+          </statement>
+        </example>
+      </slide>
+    </section>
+
+  </slideshow>
+</pretext>
