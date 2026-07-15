@@ -39,6 +39,17 @@ jobs:
           pretext generate prefigure latex-image -t slides || true
           pretext build slides
 
+      - name: Add a root index.html that redirects to the deck
+        run: |
+          cat > output/slides/index.html <<'EOF'
+          <!doctype html>
+          <meta charset="utf-8">
+          <meta http-equiv="refresh" content="0; url=main.html">
+          <link rel="canonical" href="main.html">
+          <title>MATH 14 Slides</title>
+          <p>Redirecting to <a href="main.html">the slides</a>&hellip;</p>
+          EOF
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: output/slides
