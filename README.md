@@ -14,6 +14,18 @@ Figures:
 - Chain-rule dependency diagram: **PreFigure** (compiled to SVG at build time)
 - Helix/line 3D figure: inline **JSXGraph** interactive (HTML output) side by side with a **TikZ/pgfplots** version (compiled to SVG for HTML; native in LaTeX output)
 
+## Dev container
+
+Open the repo in VS Code and accept the "Reopen in Container" prompt (or Command
+Palette → "Dev Containers: Reopen in Container"). The container installs TeX,
+`pdf2svg`, the PreTeXt CLI, PreFigure, and the PreTeXt-tools extension. First build
+of the container takes several minutes (TeX Live is large). Then:
+
+```sh
+pretext build slides
+pretext view slides
+```
+
 ## Build locally
 
 Requirements: Python 3.10+, a TeX distribution with `pgfplots` (e.g. TeX Live), and `pdf2svg` or `dvisvgm`.
