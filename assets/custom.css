@@ -7,7 +7,7 @@
   --r-heading-font: "Times New Roman", Times, Georgia, serif;
 
   /* a little smaller so full statements fit on one slide */
-  --r-main-font-size: 32px;
+  --r-main-font-size: 27px;
 
   /* academic palette */
   --r-background-color: #faf8f3;   /* warm off-white */
@@ -92,3 +92,10 @@
   color: #55606a;
   font-style: italic;
 }
+
+/* tighten vertical spacing so dense statements fit on one slide */
+.reveal .theorem-like p,
+.reveal .definition-like p,
+.reveal .example-like p { margin: 0.35em 0; }
+
+.reveal .slides section > div[align="left"] > p:first-child { margin-top: 0.2em; }

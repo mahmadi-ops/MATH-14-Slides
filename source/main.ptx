@@ -177,59 +177,12 @@
       <slide>
         <title>The Two Paths <m>C_1</m> and <m>C_2</m></title>
 
-        <!-- 3D figure: helix C1 and vertical segment C2 -->
-        <!-- Interactive HTML version (JSXGraph, inline) for web output;
-             TikZ version below for LaTeX output -->
+        <!-- 3D figure: helix C1 and vertical segment C2, rendered from TikZ/pgfplots.
+             (A JSXGraph interactive version does not embed cleanly in reveal.js
+             slides, so the static 3D render is used here.) -->
         <figure>
           <caption>The helix <m>C_1</m> and the straight-line path <m>C_2</m> from <m>(1,0,0)</m> to <m>(1,0,2\pi)</m></caption>
-          <sidebyside widths="50% 45%" valign="middle">
-            <interactive xml:id="interactive-helix" platform="jsxgraph" width="100%" aspect="1:1">
-              <slate xml:id="jsx-helix" surface="jsxgraph" aspect="1:1">
-                var board = JXG.JSXGraph.initBoard('jsx-helix', {
-                    boundingbox: [-9, 9, 9, -9],
-                    keepaspectratio: true,
-                    axis: false,
-                    showCopyright: false,
-                    showNavigation: false
-                });
-
-                var view = board.create('view3d',
-                    [[-6.5, -4.5], [13, 13],
-                     [[-1.5, 1.5], [-1.5, 1.5], [0, 2 * Math.PI]]],
-                    {
-                        projection: 'parallel',
-                        depthOrder: { enabled: true },
-                        xPlaneRear: { fillOpacity: 0.05 },
-                        yPlaneRear: { fillOpacity: 0.05 },
-                        az: { slider: { visible: false } },
-                        el: { slider: { visible: false } }
-                    });
-
-                // C1: the helix r(t) = (cos t, sin t, t)
-                view.create('curve3d', [
-                    function (t) { return Math.cos(t); },
-                    function (t) { return Math.sin(t); },
-                    function (t) { return t; },
-                    [0, 2 * Math.PI]
-                ], { strokeColor: '#1f77b4', strokeWidth: 3 });
-
-                // endpoints
-                var A = view.create('point3d', [1, 0, 0],
-                    { name: '(1,0,0)', size: 2, fixed: true,
-                      strokeColor: '#000', fillColor: '#000',
-                      label: { offset: [8, -6] } });
-                var B = view.create('point3d', [1, 0, 2 * Math.PI],
-                    { name: '(1,0,2&#960;)', size: 2, fixed: true,
-                      strokeColor: '#2ca02c', fillColor: '#2ca02c',
-                      label: { offset: [8, 6] } });
-
-                // C2: straight segment from A to B
-                view.create('line3d', [A, B],
-                    { straightFirst: false, straightLast: false,
-                      strokeColor: '#d62728', strokeWidth: 3 });
-              </slate>
-            </interactive>
-            <image xml:id="img-helix-tikz">
+            <image xml:id="img-helix-tikz" width="60%">
               <shortdescription>Helix winding once around the z-axis from (1,0,0) up to (1,0,2 pi), with a vertical red segment joining the two endpoints</shortdescription>
               <latex-image>
                 \begin{tikzpicture}
@@ -262,7 +215,6 @@
                 \end{tikzpicture}
               </latex-image>
             </image>
-          </sidebyside>
         </figure>
       </slide>
 
