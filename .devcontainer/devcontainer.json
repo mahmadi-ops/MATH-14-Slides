@@ -1,0 +1,16 @@
+{
+  "name": "PreTeXt slides",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "forwardPorts": [8128],
+  "portsAttributes": {
+    "8128": { "label": "pretext view", "onAutoForward": "openBrowser" }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "oscarlevin.pretext-tools"
+      ]
+    }
+  }
+}

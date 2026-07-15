@@ -1,0 +1,54 @@
+name: Build and deploy slides
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install TeX (for latex-image / TikZ)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-extra texlive-pictures pdf2svg
+
+      - name: Install PreTeXt CLI and PreFigure
+        run: pip install pretext prefig
+
+      - name: Generate assets and build
+        run: |
+          # generate exits 1 on a harmless "TOC level" message for slideshows;
+          # the subsequent build fails loudly if assets are actually missing
+          pretext generate prefigure latex-image -t slides || true
+          pretext build slides
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: output/slides
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,5 @@
+output/
+generated-assets/
+!generated-assets/qrcode/
+logs/
+.DS_Store
