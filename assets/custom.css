@@ -93,10 +93,10 @@
    Square frame so the (square) construction fills it and stays centered,
    with a gap below before the questions. */
 .reveal iframe#fig2-work-paths {
-  width: 52vh !important;
-  height: 52vh !important;
-  max-width: 90vw;
-  margin: 0 auto 1.6em !important;
+  width: 54vh !important;
+  height: 54vh !important;
+  max-width: 92vw;
+  margin: 0.2em auto 1.4em !important;
   display: block;
   border: none;
 }
