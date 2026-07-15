@@ -183,7 +183,7 @@
              PreTeXt supplies the "ggbApplet." prefix automatically. -->
         <figure>
           <caption>The helix <m>C_1</m> and the straight-line path <m>C_2</m> from <m>(1,0,0)</m> to <m>(1,0,2\pi)</m> (drag to rotate)</caption>
-          <interactive xml:id="ggb-two-paths" platform="geogebra" width="70%" aspect="4:3">
+          <interactive xml:id="ggb-two-paths" platform="geogebra" width="96%" aspect="16:9">
             <slate xml:id="ggb-two-paths-slate" surface="geogebra">
               setPerspective("T")
               evalCommand("A=(1,0,0)")

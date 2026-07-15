@@ -80,12 +80,19 @@
   background: transparent;
 }
 
-/* enlarge the interactive 3-D figure from its default 300x300 */
-.reveal iframe#interactive-helix {
-  width: min(62vh, 100%) !important;
-  height: 62vh !important;
+/* GeoGebra interactive: make it fill most of the slide, centered */
+.reveal .interactive-iframe-container { width: 100% !important; text-align: center; }
+.reveal iframe#ggb-two-paths {
+  width: min(92vw, 1250px) !important;
+  height: 74vh !important;
+  margin: 0 auto;
+  display: block;
   border: none;
 }
+/* hide the little "open in new tab" icon that renders as an empty box */
+.reveal .interactive-iframe-container__opener { display: none !important; }
+/* keep the figure block from adding its own height cap */
+.reveal figure.figure-like { margin: 0; }
 
 .reveal figcaption {
   font-size: 0.7em;
