@@ -3,4 +3,7 @@
   <source>
     <directories external="../assets" generated="../generated-assets"/>
   </source>
+  <revealjs>
+    <appearance theme="simple" custom-css="external/custom.css"/>
+  </revealjs>
 </publication>

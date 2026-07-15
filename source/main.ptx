@@ -81,6 +81,10 @@
             </p>
           </statement>
         </theorem>
+      </slide>
+
+      <slide>
+        <title>Chain Rule Behind the Theorem</title>
 
         <!-- 2D figure: chain-rule dependency diagram (PreFigure) -->
         <figure>
@@ -168,6 +172,10 @@
             </p>
           </statement>
         </example>
+      </slide>
+
+      <slide>
+        <title>The Two Paths <m>C_1</m> and <m>C_2</m></title>
 
         <!-- 3D figure: helix C1 and vertical segment C2 -->
         <!-- Interactive HTML version (JSXGraph, inline) for web output;

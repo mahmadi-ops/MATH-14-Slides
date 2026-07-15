@@ -1,0 +1,94 @@
+/* ==== MATH 14 slides — custom look ==================================== */
+/* Loaded after the reveal.js theme, so these override it.                */
+
+:root {
+  /* Times everywhere */
+  --r-main-font: "Times New Roman", Times, Georgia, serif;
+  --r-heading-font: "Times New Roman", Times, Georgia, serif;
+
+  /* a little smaller so full statements fit on one slide */
+  --r-main-font-size: 32px;
+
+  /* academic palette */
+  --r-background-color: #faf8f3;   /* warm off-white */
+  --r-main-color: #1f2328;         /* near-black body text */
+  --r-heading-color: #14324f;      /* deep navy headings */
+  --r-link-color: #0e7c66;         /* teal accent */
+
+  /* accent hues for callout boxes */
+  --accent-theorem: #14324f;       /* navy */
+  --accent-definition: #0e7c66;    /* teal */
+  --accent-example: #9a5b00;       /* amber */
+}
+
+.reveal { font-family: var(--r-main-font); }
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal .title {
+  font-family: var(--r-heading-font);
+  color: var(--r-heading-color);
+  text-transform: none;      /* keep normal capitalization, not ALL CAPS */
+  letter-spacing: normal;
+  font-weight: 700;
+}
+
+.reveal a { color: var(--r-link-color); }
+
+/* ---- callout boxes: clean tinted panels with a colored left rule ---- */
+.reveal .theorem-like,
+.reveal .definition-like,
+.reveal .example-like,
+.reveal .project-like {
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  border-radius: 8px;
+  padding: 0.6em 0.9em;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.reveal .theorem-like {
+  background: #eef3f8;
+  border-left: 6px solid var(--accent-theorem);
+}
+.reveal .definition-like {
+  background: #e9f5f1;
+  border-left: 6px solid var(--accent-definition);
+}
+.reveal .example-like {
+  background: #fbf3e6;
+  border-left: 6px solid var(--accent-example);
+}
+
+/* box heading labels pick up the accent color */
+.reveal .theorem-like .heading .type,
+.reveal .theorem-like .heading .title { color: var(--accent-theorem); }
+.reveal .definition-like .heading .type,
+.reveal .definition-like .heading .title { color: var(--accent-definition); }
+.reveal .example-like .heading .type,
+.reveal .example-like .heading .title { color: var(--accent-example); }
+
+/* ---- figures: scale to fit the slide instead of overflowing ---- */
+.reveal .image-box img,
+.reveal figure img.contained {
+  max-height: 66vh;
+  width: auto;
+  height: auto;
+  border: none !important;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* enlarge the interactive 3-D figure from its default 300x300 */
+.reveal iframe#interactive-helix {
+  width: min(62vh, 100%) !important;
+  height: 62vh !important;
+  border: none;
+}
+
+.reveal figcaption {
+  font-size: 0.7em;
+  color: #55606a;
+  font-style: italic;
+}
