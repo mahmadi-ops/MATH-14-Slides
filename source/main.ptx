@@ -279,6 +279,34 @@
       </slide>
 
       <slide>
+        <title>Figure 2: Work Along Two Paths</title>
+
+        <!-- Figure (2) from the author's GeoGebra activity (material export),
+             embedded from the local .ggb file so it is the exact construction. -->
+        <figure>
+          <caption>Figure 2. Two paths <m>C_1</m> and <m>C_2</m> in a force field — notice the orientation of each curve (drag to explore).</caption>
+          <interactive xml:id="fig2-work-paths" platform="geogebra" width="80%" aspect="4:3">
+            <slate xml:id="fig2-work-paths-slate" surface="geogebra" source="fig2-work-paths.ggb"/>
+          </interactive>
+        </figure>
+      </slide>
+
+      <slide>
+        <title>Questions on Figure 2</title>
+
+        <p>
+          <alert>Question 1.</alert> In Figure 2, determine whether the work done by
+          the force field along the two paths <m>C_1</m> and <m>C_2</m> is positive,
+          negative, or zero.
+        </p>
+
+        <p>
+          <alert>Question 3.</alert> Does the vector field in Figure 2 appear to be
+          conservative or not? Justify your answer.
+        </p>
+      </slide>
+
+      <slide>
         <title>Example: Two Ways to Compute a Line Integral</title>
 
         <example>
