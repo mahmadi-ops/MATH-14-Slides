@@ -177,6 +177,21 @@ wide frame with a square view left-aligns the drawing; a wide view stretches cir
 
 ---
 
+## 7b. Deploying to GitHub Pages
+
+- **Private repo on a free plan = no Pages.** Pages only serves public repos on GitHub
+  Free. Make the repo public (Settings → General → Danger Zone) or upgrade to Pro.
+- **The entry page is `main.html`, not `index.html`.** After deploy the site *root*
+  (`https://<user>.github.io/<repo>/`) is blank/404, but the deck is live at
+  `.../main.html`. To make the bare root work, publish an `index.html` that redirects to
+  `main.html` (the Actions workflow now writes one into `output/slides/` before upload).
+- **Pick one deploy path, don't mix:**
+  - `pretext deploy` → pushes `output/slides/` to the `gh-pages` branch → set
+    Settings → Pages → Source = "Deploy from a branch" → `gh-pages` / root.
+  - `.github/workflows/deploy.yml` (Actions, `actions/deploy-pages`) → set
+    Settings → Pages → Source = "**GitHub Actions**". Auto-builds on push; no manual deploy.
+  Using both makes them fight over Pages.
+
 ## 8. Quick "known-good" recipes
 
 - **New content slide:** `<slide><title>…</title> …one theorem/example… </slide>`. If it
