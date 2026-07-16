@@ -67,6 +67,9 @@
       if (tag !== 'h1' && tag !== 'h2') return;   // section-level titles only
       var title = head.textContent.trim();
       if (!title) return;
+      // standalone decks: deck title slide and its lone section title slide
+      // share the same text — list it once
+      if (items.length && items[items.length - 1].textContent === title) return;
       var idx = Reveal.getIndices(s);
       var el = document.createElement('a');
       el.className = 'rtoc-head';
