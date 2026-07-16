@@ -38,6 +38,10 @@
   ready(function () {
     if (document.querySelector('.rtoc-btn')) return;
 
+    // deck chrome: thin progress bar + "current/total" slide number
+    // (styled in custom.css)
+    try { Reveal.configure({ progress: true, slideNumber: 'c/t' }); } catch (e) {}
+
     var st = document.createElement('style');
     st.textContent = CSS;
     document.head.appendChild(st);

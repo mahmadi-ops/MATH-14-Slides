@@ -37,15 +37,99 @@
 
 .reveal a { color: var(--r-link-color); }
 
+/* ---- deck title slide: the only slide with an h1 ---- */
+.reveal .slides section:has(h1) h1 {
+  font-size: 1.6em;
+  margin-bottom: 0.15em;
+}
+.reveal .slides section:has(h1) h2 {
+  color: #55606a;                 /* subtitle: quiet gray italic */
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.9em;
+}
+.reveal .slides section:has(h1) h1::after {
+  content: "";
+  display: block;
+  width: 140px;
+  height: 4px;
+  margin: 0.35em auto 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #5b57d1, #1565c0);
+}
+.reveal .slides section:has(h1) table,
+.reveal .slides section:has(h1) td {
+  border: none !important;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 0.85em;
+  color: #55606a;
+}
+
+/* ---- section divider slides: an h2 but no h1 ---- */
+.reveal .slides section:has(h2):not(:has(h1)) h2 {
+  font-size: 1.45em;
+}
+.reveal .slides section:has(h2):not(:has(h1)) h2::after {
+  content: "";
+  display: block;
+  width: 110px;
+  height: 4px;
+  margin: 0.4em auto 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #5b57d1, #1565c0);
+}
+
+/* ---- content slide titles: thin indigo accent under the h3 ---- */
+.reveal .slides section h3 {
+  margin-bottom: 0.45em;
+}
+.reveal .slides section h3::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 3px;
+  margin: 0.22em auto 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #5b57d1, #1565c0);
+  opacity: 0.85;
+}
+
+/* indigo list markers, a small cohesive touch */
+.reveal .slides ul li::marker { color: #5b57d1; }
+.reveal .slides ol li::marker { color: #5b57d1; font-weight: 700; }
+
+/* reveal chrome: progress bar + slide number (enabled in toc-menu.js) */
+.reveal .progress { height: 4px; color: #5b57d1; }
+.reveal .slide-number {
+  background: transparent;
+  color: #9aa0a6;
+  font-family: var(--r-main-font);
+  font-size: 15px;
+  right: 14px;
+  bottom: 10px;
+}
+
 /* ---- callout boxes: clean tinted panels with a colored left rule ---- */
 .reveal .theorem-like,
 .reveal .definition-like,
 .reveal .example-like,
 .reveal .project-like {
-  border: 1px solid rgba(0, 0, 0, 0.10);
-  border-radius: 8px;
-  padding: 0.6em 0.9em;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 0.6em 0.95em;
+  box-shadow: 0 2px 10px rgba(91, 87, 209, 0.08);
+  text-align: left;
+}
+
+/* callout headings: slightly spaced, clearly separated from the body */
+.reveal .theorem-like .heading,
+.reveal .definition-like .heading,
+.reveal .example-like .heading {
+  display: block;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.2em;
 }
 
 .reveal .theorem-like {
@@ -133,6 +217,9 @@
   font-size: 0.7em;
   color: #55606a;
   font-style: italic;
+  text-align: center;
+  max-width: 85%;
+  margin: 0.3em auto 0;
 }
 
 /* tighten vertical spacing so dense statements fit on one slide */
