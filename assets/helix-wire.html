@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Helical wire</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #fff;
+               font-family: "Times New Roman", Georgia, serif; }
+  #plot { width: 100%; height: 100%; }
+</style>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+</head>
+<body>
+<div id="plot"></div>
+<script>
+  var TIMES = '"Times New Roman", Georgia, serif';
+  var N = 220, tmax = Math.PI / 2, t = [];
+  for (var i = 0; i <= N; i++) t.push(i * tmax / N);
+
+  var wx = t.map(function (u) { return Math.cos(u); });
+  var wy = t.map(function (u) { return Math.sin(u); });
+  var wz = t.slice();
+  var sz = t.map(function () { return 0; });
+
+  var wire = {
+    type: 'scatter3d', mode: 'lines',
+    x: wx, y: wy, z: wz,
+    line: { color: '#1e50c8', width: 9 },
+    hoverinfo: 'skip'
+  };
+  var shadow = {
+    type: 'scatter3d', mode: 'lines',
+    x: wx, y: wy, z: sz,
+    line: { color: '#9aa0a6', width: 5, dash: 'dash' },
+    hoverinfo: 'skip'
+  };
+  var ends = {
+    type: 'scatter3d', mode: 'markers+text',
+    x: [1, 0], y: [0, 1], z: [0, tmax],
+    text: ['(1, 0, 0),  t = 0', '(0, 1, π/2),  t = π/2'],
+    textposition: 'top center',
+    marker: { color: '#c0392b', size: 6 },
+    textfont: { size: 15, color: '#c0392b', family: TIMES },
+    hoverinfo: 'skip'
+  };
+
+  var layout = {
+    margin: { l: 0, r: 0, t: 0, b: 0 },
+    showlegend: false,
+    font: { family: TIMES, size: 15, color: '#1f2328' },
+    scene: {
+      xaxis: { title: 'x', range: [-1.2, 1.2], zeroline: true },
+      yaxis: { title: 'y', range: [-1.2, 1.2], zeroline: true },
+      zaxis: { title: 'z', range: [0, 1.7] },
+      aspectmode: 'cube',
+      camera: { eye: { x: 1.5, y: -1.7, z: 0.9 } }
+    }
+  };
+
+  Plotly.newPlot('plot', [shadow, wire, ends], layout,
+    { responsive: true, displaylogo: false, plotGlPixelRatio: 3,
+      modeBarButtonsToRemove: ['toImage'] });
+</script>
+</body>
+</html>

@@ -250,33 +250,14 @@
             The helical wire <m>\vr(t)=\langle\cos t,\sin t,t\rangle</m> for
             <m>0\le t\le \pi/2</m>, from <m>(1,0,0)</m> to <m>(0,1,\pi/2)</m>.
             The dashed gray curve is its shadow on the plane <m>z=0</m>
-            (drag to rotate).
+            (drag to rotate, scroll to zoom).
           </caption>
-          <interactive xml:id="ggb-helix-wire" platform="geogebra" width="62%" aspect="1:1">
-            <slate xml:id="ggb-helix-wire-slate" surface="geogebra">
-              setPerspective("T")
-              evalCommand("A=(1,0,0)")
-              evalCommand("B=(0,1,pi/2)")
-              evalCommand("wire=Curve(cos(t),sin(t),t,t,0,pi/2)")
-              evalCommand("shadow=Curve(cos(t),sin(t),0,t,0,pi/2)")
-              setColor("wire",30,80,200)
-              setLineThickness("wire",6)
-              setColor("shadow",150,150,150)
-              setLineStyle("shadow",1)
-              setLineThickness("shadow",3)
-              setColor("A",200,40,40)
-              setColor("B",200,40,40)
-              setPointSize("A",5)
-              setPointSize("B",5)
-              setLabelVisible("A",true)
-              setLabelVisible("B",true)
-              setLabelVisible("wire",false)
-              setLabelVisible("shadow",false)
-              evalCommand("SetViewDirection(Vector((1.4,-2.3,1.0)))")
-              setAxesVisible(true,true,true)
-              setWidth(900)
-              setHeight(560)
-            </slate>
+          <interactive xml:id="helix-wire" width="94%" aspect="4:3" iframe="helix-wire.html">
+            <shortdescription>
+              Interactive 3D graph of the quarter-turn helix rising from
+              (1,0,0) to (0,1,pi/2), with its shadow on the plane z=0.
+              Drag to rotate, scroll to zoom.
+            </shortdescription>
           </interactive>
         </figure>
       </slide>

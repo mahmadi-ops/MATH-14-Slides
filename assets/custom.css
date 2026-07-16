@@ -89,9 +89,9 @@
   display: block;
   border: none;
 }
-.reveal iframe#ggb-helix-wire {
-  width: min(90vw, 900px) !important;
-  height: min(72vh, 560px) !important;
+.reveal iframe#helix-wire {
+  width: min(96vw, 1040px) !important;
+  height: min(80vh, 660px) !important;
   margin: 0 auto !important;
   display: block;
   border: none;

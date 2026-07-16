@@ -56,7 +56,9 @@ for every `<interactive xml:id="id">`. Commit one stub per interactive:
   <pi:standalone-url/><pi:context-url/>
 </pi:qrcode-urls>
 ```
-Current stubs: `ggb-two-paths-url.xml`, `fig2-work-paths-url.xml`, `ggb-helix-wire-url.xml`.
+Current stubs: `ggb-two-paths-url.xml`, `fig2-work-paths-url.xml`, `helix-wire-url.xml`.
+(A stub is needed for **every** `<interactive>`, including a self-contained
+`<interactive iframe="helix-wire.html">` — the Plotly 3D graph in `assets/helix-wire.html`.)
 
 ### Building
 - Build inside the dev container via **PreTeXt Tools → "Build default target"**
