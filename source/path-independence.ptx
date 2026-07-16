@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Standalone deck: Line Integrals of Scalar Functions.                  -->
+<!-- Standalone deck: Path Independence (16.3).                            -->
 <!-- Shares docinfo.ptx and the section fragment with main.ptx.            -->
 <pretext xml:lang="en-US" xmlns:xi="http://www.w3.org/2001/XInclude">
 
   <xi:include href="docinfo.ptx"/>
 
   <slideshow>
-    <title>Line Integrals of Scalar Functions</title>
-    <subtitle>MATH 14</subtitle>
+    <title>Path Independence, Conservative Fields, and Potential Functions</title>
+    <subtitle>Section 16.3</subtitle>
 
     <frontmatter>
       <titlepage>
@@ -18,7 +18,7 @@
       </titlepage>
     </frontmatter>
 
-    <xi:include href="sections/sec-line-integrals.ptx"/>
+    <xi:include href="sections/sec-path-independence.ptx"/>
 
   </slideshow>
 </pretext>

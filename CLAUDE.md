@@ -9,14 +9,54 @@ editing slides.
 ## 1. Project layout & build
 
 ```
-source/main.ptx                  # the slideshow source (all slides)
-project.ptx                      # target "slides", format revealjs
-publication/publication.ptx      # directories + revealjs appearance (theme, custom-css)
-assets/                          # external files: custom.css, *.ggb (external dir)
-generated-assets/                # PreFigure/latex-image SVGs (+ a committed qrcode stub)
-.devcontainer/                   # dev container (needs Docker running)
-output/slides/main.html          # built deck
+source/docinfo.ptx                         # SHARED <docinfo> (macros + latex-image preamble); NOT a target
+source/sections/sec-path-independence.ptx  # <section> fragment: all 16.3 slides
+source/sections/sec-line-integrals.ptx     # <section> fragment: all Line Integrals slides
+source/path-independence.ptx               # standalone deck → target "slides"         (docinfo + its section)
+source/line-integrals.ptx                  # standalone deck → target "line-integrals"
+source/main.ptx                            # COMBINED deck   → target "main"            (docinfo + BOTH sections)
+project.ptx                                # one revealjs target per deck
+publication/publication.ptx                # directories + revealjs appearance (theme, custom-css)
+assets/                                    # external files: custom.css, *.ggb (external dir)
+generated-assets/                          # PreFigure/latex-image SVGs (+ committed qrcode stubs, see §1b)
+.devcontainer/                             # dev container (needs Docker running)
+output/<target>/<source>.html              # built deck (entry file = source basename)
 ```
+
+### Modular structure: shared docinfo + section fragments
+Slide content lives in **section fragments** (`source/sections/sec-*.ptx`; each file's root
+is a single `<section>`). A deck is a thin `<pretext>` wrapper that pulls in the shared
+docinfo and one or more sections:
+```xml
+<pretext xml:lang="en-US" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <xi:include href="docinfo.ptx"/>
+  <slideshow>
+    <title>…</title>
+    <frontmatter><titlepage><author>…</author></titlepage></frontmatter>
+    <xi:include href="sections/sec-line-integrals.ptx"/>   <!-- one or more -->
+  </slideshow>
+</pretext>
+```
+The **standalone** decks (`path-independence.ptx`, `line-integrals.ptx`) include one section
+each; the **combined** `main.ptx` includes every section. Both reuse the *same* fragment
+files, so slide content is never duplicated.
+
+**To add a new topic:** write `sections/sec-<topic>.ptx` (root `<section>`), add its
+`<xi:include>` to `main.ptx`, optionally give it a standalone deck (copy a wrapper), add the
+target(s) to `project.ptx`, and put any new macro/package in `docinfo.ptx` once. The built
+entry file is `output/<target>/<source>.html` (named after the source file, **not**
+`main.html` — e.g. the "slides" target builds `path-independence.html`, and the "main"
+target builds `main.html`).
+
+### 1b. The qrcode stub (needed once per interactive)
+Regenerating assets fails with `Cannot resolve URI …/generated-assets/qrcode/<id>-url.xml`
+for every `<interactive xml:id="id">`. Commit one stub per interactive:
+```xml
+<pi:qrcode-urls xmlns:pi="http://pretextbook.org/2020/pretext/internal">
+  <pi:standalone-url/><pi:context-url/>
+</pi:qrcode-urls>
+```
+Current stubs: `ggb-two-paths-url.xml`, `fig2-work-paths-url.xml`.
 
 ### Building
 - Build inside the dev container via **PreTeXt Tools → "Build default target"**

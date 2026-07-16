@@ -3,7 +3,7 @@
   <targets>
     <target name="slides"
             format="revealjs"
-            source="main.ptx"
+            source="path-independence.ptx"
             publication="publication.ptx"
             output-dir="slides"/>
     <target name="line-integrals"
@@ -11,5 +11,10 @@
             source="line-integrals.ptx"
             publication="publication.ptx"
             output-dir="line-integrals"/>
+    <target name="main"
+            format="revealjs"
+            source="main.ptx"
+            publication="publication.ptx"
+            output-dir="main"/>
   </targets>
 </project>

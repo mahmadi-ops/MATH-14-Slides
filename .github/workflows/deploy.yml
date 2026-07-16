@@ -24,35 +24,74 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install TeX (for latex-image / TikZ)
+      - name: Install TeX (PreTeXt compiles latex-image / TikZ with xelatex)
         run: |
           sudo apt-get update
-          sudo apt-get install -y texlive-latex-extra texlive-pictures pdf2svg
+          sudo apt-get install -y \
+            texlive-latex-extra texlive-pictures texlive-fonts-recommended \
+            texlive-xetex pdf2svg libcairo2-dev
 
       - name: Install PreTeXt CLI and PreFigure
-        run: pip install pretext prefig
-
-      - name: Generate assets and build
         run: |
-          # generate exits 1 on a harmless "TOC level" message for slideshows;
-          # the subsequent build fails loudly if assets are actually missing
+          pip install pretext prefig
+          prefig init
+
+      - name: Build all decks (two standalone + one combined)
+        run: |
+          # 'generate' exits non-zero on a harmless "TOC level" message for
+          # slideshows; the following 'build' is the real signal.
           pretext generate prefigure latex-image -t slides || true
           pretext build slides
+          pretext generate latex-image -t line-integrals || true
+          pretext build line-integrals
+          pretext generate prefigure latex-image -t main || true
+          pretext build main
 
-      - name: Add a root index.html that redirects to the deck
+      - name: Assemble Pages site (landing page + combined + standalone decks)
         run: |
-          cat > output/slides/index.html <<'EOF'
+          mkdir -p _site/all _site/path-independence _site/line-integrals
+          cp -r output/main/.            _site/all/
+          cp -r output/slides/.          _site/path-independence/
+          cp -r output/line-integrals/.  _site/line-integrals/
+          cat > _site/index.html <<'EOF'
           <!doctype html>
-          <meta charset="utf-8">
-          <meta http-equiv="refresh" content="0; url=main.html">
-          <link rel="canonical" href="main.html">
-          <title>MATH 14 Slides</title>
-          <p>Redirecting to <a href="main.html">the slides</a>&hellip;</p>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>MATH 14 — Lecture Slides</title>
+            <style>
+              body { font-family: "Times New Roman", Georgia, serif; color: #1f2328;
+                     max-width: 680px; margin: 4rem auto; padding: 0 1.2rem; }
+              h1 { color: #5b57d1; font-weight: 700; }
+              h2 { color: #55606a; font-size: 1rem; font-weight: normal;
+                   text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2rem; }
+              ul { list-style: none; padding: 0; }
+              li { margin: 0.8rem 0; }
+              a { color: #1565c0; font-size: 1.2rem; text-decoration: none; }
+              a:hover { text-decoration: underline; }
+              .sub { color: #55606a; font-size: 0.95rem; margin-top: 2.5rem; }
+            </style>
+          </head>
+          <body>
+            <h1>MATH 14 &mdash; Lecture Slides</h1>
+            <h2>Full deck</h2>
+            <ul>
+              <li><a href="all/main.html">All topics (combined)</a></li>
+            </ul>
+            <h2>By topic</h2>
+            <ul>
+              <li><a href="line-integrals/line-integrals.html">Line Integrals of Scalar Functions</a></li>
+              <li><a href="path-independence/path-independence.html">16.3 &mdash; Path Independence, Conservative Fields, and Potential Functions</a></li>
+            </ul>
+            <p class="sub">Santa Clara University &middot; Mehdi Ahmadi</p>
+          </body>
+          </html>
           EOF
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: output/slides
+          path: _site
 
   deploy:
     needs: build

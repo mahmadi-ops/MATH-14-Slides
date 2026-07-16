@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ===================================================================== -->
+<!-- Shared docinfo for the MATH 14 slide decks.                           -->
+<!--                                                                       -->
+<!-- Each deck (path-independence.ptx, line-integrals.ptx, ...) pulls this -->
+<!-- in with   <xi:include href="main.ptx"/>   so the math macros and the  -->
+<!-- latex-image (TikZ / pgfplots) preamble live in exactly one place.     -->
+<!-- Add a new macro or LaTeX package here and every deck gets it.         -->
+<!--                                                                       -->
+<!-- NOTE: this file is NOT a build target; it is an included fragment.    -->
+<!-- ===================================================================== -->
+<docinfo>
+  <macros>
+    \newcommand{\vF}{\mathbf{F}}
+    \newcommand{\vr}{\mathbf{r}}
+    \newcommand{\vv}{\mathbf{v}}
+    \newcommand{\vi}{\mathbf{i}}
+    \newcommand{\vj}{\mathbf{j}}
+    \newcommand{\vk}{\mathbf{k}}
+    \newcommand{\R}{\mathbb{R}}
+  </macros>
+  <latex-image-preamble>
+    \usepackage{tikz}
+    \usetikzlibrary{arrows.meta}
+    \usepackage{pgfplots}
+    \pgfplotsset{compat=1.18}
+  </latex-image-preamble>
+</docinfo>
