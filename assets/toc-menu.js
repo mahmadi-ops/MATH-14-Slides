@@ -6,28 +6,32 @@
  * before </body> (done by the deploy workflow's "menu" step, and locally by
  * scripts/inject-toc.py). It is self-contained: injects its own CSS, reads the
  * slide titles from the DOM, and jumps with Reveal.slide().
+ *
+ * Colors match custom.css: near-black ground, paper type, gold accent.
  */
 (function () {
   var CSS = [
     '.rtoc-btn{position:fixed;top:14px;left:14px;z-index:60;width:42px;height:42px;',
-    'border:none;border-radius:6px;background:#5b57d1;color:#fff;font-size:20px;',
-    'line-height:42px;text-align:center;cursor:pointer;opacity:.5;transition:opacity .2s;padding:0}',
+    'border:1px solid #b68235;border-radius:6px;background:#16130f;color:#b68235;font-size:20px;',
+    'line-height:40px;text-align:center;cursor:pointer;opacity:.55;transition:opacity .2s;padding:0}',
     '.rtoc-btn:hover{opacity:1}',
-    '.rtoc-back{position:fixed;inset:0;z-index:61;background:rgba(0,0,0,.3);display:none}',
+    '.rtoc-back{position:fixed;inset:0;z-index:61;background:rgba(0,0,0,.45);display:none}',
     '.rtoc-back.open{display:block}',
     '.rtoc-panel{position:fixed;top:0;left:0;z-index:62;width:360px;max-width:86vw;height:100%;',
-    'overflow-y:auto;background:#fff;box-shadow:2px 0 18px rgba(0,0,0,.3);',
+    'overflow-y:auto;background:#1d1a15;border-right:1px solid rgba(243,242,242,0.18);',
+    'box-shadow:2px 0 18px rgba(0,0,0,.5);',
     'transform:translateX(-100%);transition:transform .25s ease;',
-    'font-family:"Times New Roman",Georgia,serif;padding:1.2rem 0}',
+    'font-family:"Lora",Georgia,"Times New Roman",serif;padding:1.2rem 0}',
     '.rtoc-panel.open{transform:translateX(0)}',
-    '.rtoc-title{color:#5b57d1;font-weight:700;font-size:1.15rem;margin:.2rem 1.3rem 1rem}',
-    '.rtoc-head{color:#5b57d1;font-weight:700;font-size:1.02rem;margin:1.1rem 1.3rem .35rem;',
+    '.rtoc-title{color:#b68235;font-weight:400;font-size:1.15rem;letter-spacing:.06em;',
+    'text-transform:uppercase;margin:.2rem 1.3rem 1rem}',
+    '.rtoc-head{color:#b68235;font-weight:600;font-size:1.02rem;margin:1.1rem 1.3rem .35rem;',
     'cursor:pointer;text-decoration:none;display:block}',
     '.rtoc-head:hover{text-decoration:underline}',
-    '.rtoc-panel a{display:block;padding:.4rem 1.3rem .4rem 1.7rem;color:#1f2328;',
+    '.rtoc-panel a{display:block;padding:.4rem 1.3rem .4rem 1.7rem;color:#f3f2f2;',
     'text-decoration:none;font-size:.95rem;cursor:pointer}',
-    '.rtoc-panel a:hover{background:#eef2ff;color:#1565c0}',
-    '.rtoc-panel a.rtoc-active{background:#e7e9ff;color:#5b57d1;font-weight:700}'
+    '.rtoc-panel a:hover{background:rgba(182,130,53,.12);color:#cf9f55}',
+    '.rtoc-panel a.rtoc-active{background:rgba(182,130,53,.18);color:#b68235;font-weight:600}'
   ].join('');
 
   function ready(fn) {
