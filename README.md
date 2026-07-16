@@ -1,53 +1,53 @@
-# Section 16.3 Slides — Path Independence, Conservative Fields, and Potential Functions
+# Improved Line Integrals slides — drop-in PreTeXt files
 
-PreTeXt slideshow (reveal.js output) for Calculus IV, Section 16.3.
+Two files, mirroring your repo layout:
 
-## Structure
+- `source/sections/sec-line-integrals.ptx` — replaces the section fragment
+- `assets/custom.css` — replaces the deck stylesheet
 
-- `source/main.ptx` — the slideshow source (8 slides: definitions, Theorems 1–3, four examples)
-- `project.ptx` — PreTeXt CLI project manifest (one target: `slides`, format `revealjs`)
-- `publication/publication.ptx` — publication settings
-- `.github/workflows/deploy.yml` — builds and deploys to GitHub Pages on every push to `main`
+## What changed
 
-Figures:
+**Content (`sec-line-integrals.ptx`)** — 14 slides:
 
-- Chain-rule dependency diagram: **PreFigure** (compiled to SVG at build time)
-- Helix/line 3D figure: inline **JSXGraph** interactive (HTML output) side by side with a **TikZ/pgfplots** version (compiled to SVG for HTML; native in LaTeX output)
+- Wide equation chains split with `<md>`/`<mrow>` so reveal doesn't clip them
+  ("From sum to integral", "Solving for the upper limit b").
+- "Speed along the helix" + "Density along the curve" merged into one slide
+  ("Speed and density along the helix") — both were short, and together they
+  are one step of the plan.
+- The Plotly `helix-wire.html` interactive replaced by a **static TikZ figure**
+  (`li-helix-static`): quarter-turn helix, dashed shadow on z = 0, labeled
+  endpoints. You can delete `assets/helix-wire.html` and the
+  `generated-assets/qrcode/helix-wire-url.xml` stub (harmless if kept).
+- New closing slide: "Recap: the recipe" — the key formula plus the four moves.
+- Titles retuned as parallel chapter-style noun phrases; copy tightened.
 
-## Dev container
+**Style (`custom.css`)** — an editorial, book-like dark look:
 
-Open the repo in VS Code and accept the "Reopen in Container" prompt (or Command
-Palette → "Dev Containers: Reopen in Container"). The container installs TeX,
-`pdf2svg`, the PreTeXt CLI, PreFigure, and the PreTeXt-tools extension. First build
-of the container takes several minutes (TeX Live is large). Then:
+- Deep warm near-black ground (#16130f), paper-white type, one gold accent
+  (#b68235) used for rules, list markers, links and labels — never fills.
+- Cormorant Garamond headings over Lora body (Google Fonts `@import`;
+  falls back to Georgia/Times offline).
+- Callout boxes are hairline-bordered and unfilled; headings are gold
+  uppercase labels.
+- Compiled SVG figures keep their dark ink, so they sit on a paper "plate"
+  (light mat + hairline edge) — this also covers the path-independence
+  section's PreFigure diagram and GeoGebra iframes.
+- Figure 2 legend colors lightened to stay readable on the dark ground.
+
+## Install
 
 ```sh
-pretext build slides
-pretext view slides
+cp source/sections/sec-line-integrals.ptx  <repo>/source/sections/
+cp assets/custom.css                       <repo>/assets/
+pretext generate latex-image -t slides || true
+pretext build slides            # or: main / line-integrals
 ```
 
-## Build locally
+Notes for your setup (from the repo's CLAUDE.md):
 
-Requirements: Python 3.10+, a TeX distribution with `pgfplots` (e.g. TeX Live), and `pdf2svg` or `dvisvgm`.
-
-```sh
-pip install pretext prefig
-pretext generate prefigure latex-image -t slides
-pretext build slides
-pretext view slides                   # opens the deck in your browser
-```
-
-Output lands in `output/slides/main.html`.
-
-Note: `generated-assets/qrcode/interactive-helix-url.xml` is a committed stub. The
-`prefigure` and `latex-image` extractors read a QR-code sidecar for the JSXGraph
-interactive and fail if it is missing (`pretext generate qrcode` does not produce it
-for revealjs targets in CLI 2.44). Keep the stub; if you add more interactives, add a
-matching `<xml:id>-url.xml` stub for each.
-
-## Deploy to GitHub Pages
-
-1. Push this repo to GitHub.
-2. In the repo: Settings → Pages → Source → **GitHub Actions**.
-3. Push to `main` (or run the workflow manually). The deck will be at
-   `https://<user>.github.io/<repo>/main.html`.
+- MathJax 2.7.8: no `\textcolor` used anywhere — coloring stays in CSS.
+- Macros `\vr`, `\vv` come from `docinfo.ptx`, unchanged.
+- New `latex-image` figure needs no qrcode stub (stubs are only for
+  `<interactive>` elements).
+- The one removed interactive was `helix-wire`; everything else in
+  `sec-path-independence.ptx` is untouched and still builds.

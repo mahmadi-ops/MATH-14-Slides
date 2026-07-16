@@ -1,24 +1,29 @@
 /* ==== MATH 14 slides — custom look ==================================== */
 /* Loaded after the reveal.js theme, so these override it.                */
+/* Direction: an editorial, book-like dark deck — Cormorant Garamond      */
+/* headings over Lora body on a deep warm near-black ground, paper-white  */
+/* type, a single gold accent (#b68235) applied as rules, marks and       */
+/* labels rather than fills, and hairline dividers carrying structure.    */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
 
 :root {
-  /* Times everywhere */
-  --r-main-font: "Times New Roman", Times, Georgia, serif;
-  --r-heading-font: "Times New Roman", Times, Georgia, serif;
+  --r-main-font: "Lora", Georgia, "Times New Roman", serif;
+  --r-heading-font: "Cormorant Garamond", Georgia, "Times New Roman", serif;
 
   /* a little smaller so full statements fit on one slide */
   --r-main-font-size: 27px;
 
-  /* GeoGebra-matched palette: indigo (GeoGebra brand) + blue/red from the graphs */
-  --r-background-color: #ffffff;   /* clean white, like the GeoGebra canvas */
-  --r-main-color: #1f2328;         /* near-black body text */
-  --r-heading-color: #5b57d1;      /* GeoGebra indigo */
-  --r-link-color: #1565c0;         /* GeoGebra blue */
+  /* deep warm near-black ground, paper type, one gold accent */
+  --r-background-color: #16130f;
+  --r-main-color: #f3f2f2;
+  --r-heading-color: #f3f2f2;
+  --r-link-color: #b68235;
 
-  /* accent hues for callout boxes */
-  --accent-theorem: #5b57d1;       /* indigo */
-  --accent-definition: #1565c0;    /* blue */
-  --accent-example: #c0392b;       /* red (from the graph curves) */
+  --gold: #b68235;
+  --paper: #f3f2f2;
+  --paper-muted: rgba(243, 242, 242, 0.62);
+  --rule: rgba(243, 242, 242, 0.25);
 }
 
 .reveal { font-family: var(--r-main-font); }
@@ -30,20 +35,22 @@
 .reveal .title {
   font-family: var(--r-heading-font);
   color: var(--r-heading-color);
-  text-transform: none;      /* keep normal capitalization, not ALL CAPS */
-  letter-spacing: normal;
-  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  font-weight: 400;              /* display serif takes the normal cut */
 }
 
 .reveal a { color: var(--r-link-color); }
+.reveal a:hover { color: #cf9f55; }
+::selection { background: rgba(182, 130, 53, 0.35); }
 
 /* ---- deck title slide: the only slide with an h1 ---- */
 .reveal .slides section:has(h1) h1 {
-  font-size: 1.6em;
+  font-size: 1.7em;
   margin-bottom: 0.15em;
 }
 .reveal .slides section:has(h1) h2 {
-  color: #55606a;                 /* subtitle: quiet gray italic */
+  color: var(--paper-muted);
   font-style: italic;
   font-weight: 400;
   font-size: 0.9em;
@@ -52,10 +59,9 @@
   content: "";
   display: block;
   width: 140px;
-  height: 4px;
-  margin: 0.35em auto 0;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #5b57d1, #1565c0);
+  height: 1px;
+  margin: 0.5em auto 0;
+  background: var(--gold);       /* one gold hairline, not a gradient bar */
 }
 .reveal .slides section:has(h1) table,
 .reveal .slides section:has(h1) td {
@@ -64,136 +70,129 @@
   margin-right: auto;
   text-align: center;
   font-size: 0.85em;
-  color: #55606a;
+  color: var(--paper-muted);
 }
 
 /* ---- section divider slides: an h2 but no h1 ---- */
 .reveal .slides section:has(h2):not(:has(h1)) h2 {
-  font-size: 1.45em;
+  font-size: 1.5em;
 }
 .reveal .slides section:has(h2):not(:has(h1)) h2::after {
   content: "";
   display: block;
   width: 110px;
-  height: 4px;
-  margin: 0.4em auto 0;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #5b57d1, #1565c0);
+  height: 1px;
+  margin: 0.5em auto 0;
+  background: var(--gold);
 }
 
-/* ---- content slide titles: thin indigo accent under the h3 ---- */
+/* ---- content slide titles: a gold kicker-style hairline under the h3 ---- */
 .reveal .slides section h3 {
-  margin-bottom: 0.45em;
+  margin-bottom: 0.5em;
 }
 .reveal .slides section h3::after {
   content: "";
   display: block;
   width: 90px;
-  height: 3px;
-  margin: 0.22em auto 0;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #5b57d1, #1565c0);
-  opacity: 0.85;
+  height: 1px;
+  margin: 0.3em auto 0;
+  background: var(--gold);
 }
 
-/* indigo list markers, a small cohesive touch */
-.reveal .slides ul li::marker { color: #5b57d1; }
-.reveal .slides ol li::marker { color: #5b57d1; font-weight: 700; }
+/* gold list markers — gold as small marks, the accent's proper job */
+.reveal .slides ul li::marker { color: var(--gold); }
+.reveal .slides ol li::marker { color: var(--gold); font-weight: 400; font-variant-numeric: tabular-nums; }
 
-/* reveal chrome: progress bar + slide number (enabled in toc-menu.js) */
-.reveal .progress { height: 4px; color: #5b57d1; }
+/* alerts ("Strategy.", "Sanity checks.") pick up the gold */
+.reveal .alert, .reveal em.alert, .reveal .slides b, .reveal .slides .emphasis { }
+.reveal .slides .alert { color: var(--gold); font-style: normal; }
+
+/* reveal chrome: progress bar + slide number */
+.reveal .progress { height: 3px; color: var(--gold); }
 .reveal .slide-number {
   background: transparent;
-  color: #9aa0a6;
+  color: var(--paper-muted);
   font-family: var(--r-main-font);
   font-size: 15px;
+  font-variant-numeric: tabular-nums;
   right: 14px;
   bottom: 10px;
 }
 
-/* ---- callout boxes: clean tinted panels with a colored left rule ---- */
+/* ---- callout boxes: bordered and unfilled — hairlines, never tinted fills ---- */
 .reveal .theorem-like,
 .reveal .definition-like,
 .reveal .example-like,
 .reveal .project-like {
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 10px;
-  padding: 0.6em 0.95em;
-  box-shadow: 0 2px 10px rgba(91, 87, 209, 0.08);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.65em 1em;
+  box-shadow: none;
   text-align: left;
 }
 
-/* callout headings: slightly spaced, clearly separated from the body */
+/* callout headings: small-caps-style gold labels */
 .reveal .theorem-like .heading,
 .reveal .definition-like .heading,
 .reveal .example-like .heading {
   display: block;
-  letter-spacing: 0.02em;
-  margin-bottom: 0.2em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.72em;
+  margin-bottom: 0.35em;
 }
-
-.reveal .theorem-like {
-  background: #f0f0fb;
-  border-left: 6px solid var(--accent-theorem);
-}
-.reveal .definition-like {
-  background: #eaf2fb;
-  border-left: 6px solid var(--accent-definition);
-}
-.reveal .example-like {
-  background: #fbeeec;
-  border-left: 6px solid var(--accent-example);
-}
-
-/* box heading labels pick up the accent color */
 .reveal .theorem-like .heading .type,
-.reveal .theorem-like .heading .title { color: var(--accent-theorem); }
+.reveal .theorem-like .heading .title,
 .reveal .definition-like .heading .type,
-.reveal .definition-like .heading .title { color: var(--accent-definition); }
+.reveal .definition-like .heading .title,
 .reveal .example-like .heading .type,
-.reveal .example-like .heading .title { color: var(--accent-example); }
+.reveal .example-like .heading .title { color: var(--gold); }
 
-/* ---- figures: scale to fit the slide instead of overflowing ---- */
+/* ---- figures: compiled SVGs keep dark ink, so they sit on a paper mat ---- */
+/* (the tipped-in plate: a light mat with a hairline edge on the dark page) */
 .reveal .image-box img,
-.reveal figure img.contained {
-  max-height: 66vh;
+.reveal figure img.contained,
+.reveal figure img {
+  max-height: 62vh;
   width: auto;
   height: auto;
-  border: none !important;
+  background: var(--paper);
+  padding: 14px;
+  border: 1px solid var(--rule) !important;
+  border-radius: 2px;
   box-shadow: none;
-  background: transparent;
 }
 
-/* GeoGebra interactive: make it fill most of the slide, centered */
+/* GeoGebra / iframe interactives (other sections): same plate treatment */
 .reveal .interactive-iframe-container { width: 100% !important; text-align: center; }
 .reveal iframe#ggb-two-paths {
   width: min(97vw, 1060px) !important;
   height: 82vh !important;
   margin: 0 auto;
   display: block;
-  border: none;
+  border: 1px solid var(--rule);
+  background: #fff;
 }
 .reveal iframe#helix-wire {
   width: min(96vw, 1040px) !important;
   height: min(80vh, 660px) !important;
   margin: 0 auto !important;
   display: block;
-  border: none;
+  border: 1px solid var(--rule);
+  background: #fff;
 }
-/* Figure 2 shares its slide with two questions, so keep it moderate.
-   Square frame so the (square) construction fills it and stays centered,
-   with a gap below before the questions. */
 .reveal iframe#fig2-work-paths {
   width: 44vh !important;
   height: 44vh !important;
   max-width: 90vw;
   margin: 0.1em auto 0.5em !important;
   display: block;
-  border: none;
+  border: 1px solid var(--rule);
+  background: #fff;
 }
-/* Figure 2 legend: the first three paragraphs on the Figure 2 slide are the
-   legend lines. Scope to that slide via its iframe, tighten, and color to match
-   the construction (MathJax spans forced to the same color). */
+/* Figure 2 legend (path-independence section): tightened, colored to match
+   the construction — lightened for the dark ground. */
 .reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(1),
 .reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(2),
 .reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(3) {
@@ -203,23 +202,22 @@
   text-align: center;
 }
 .reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(1),
-.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(1) * { color: #cc0000 !important; }
+.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(1) * { color: #e06666 !important; }
 .reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(2),
-.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(2) * { color: #009900 !important; }
+.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(2) * { color: #7fc97f !important; }
 .reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(3),
-.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(3) * { color: #000000 !important; }
+.reveal section:has(iframe#fig2-work-paths) > div[align="left"] > p:nth-of-type(3) * { color: var(--paper) !important; }
 /* hide the little "open in new tab" icon that renders as an empty box */
 .reveal .interactive-iframe-container__opener { display: none !important; }
-/* keep the figure block from adding its own height cap */
 .reveal figure.figure-like { margin: 0; }
 
 .reveal figcaption {
   font-size: 0.7em;
-  color: #55606a;
+  color: var(--paper-muted);
   font-style: italic;
   text-align: center;
   max-width: 85%;
-  margin: 0.3em auto 0;
+  margin: 0.4em auto 0;
 }
 
 /* tighten vertical spacing so dense statements fit on one slide */
