@@ -47,6 +47,9 @@ jobs:
           pretext generate prefigure latex-image -t main || true
           pretext build main
 
+      - name: Add the clickable table-of-contents menu to each deck
+        run: python3 scripts/inject-toc.py output/slides output/line-integrals output/main
+
       - name: Assemble Pages site (landing page + combined + standalone decks)
         run: |
           mkdir -p _site/all _site/path-independence _site/line-integrals

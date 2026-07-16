@@ -189,6 +189,21 @@ The applet iframe id equals the interactive's `xml:id`. Example:
 A **square** frame keeps a square GeoGebra view undistorted (round circles stay round). A
 wide frame with a square view left-aligns the drawing; a wide view stretches circles.
 
+### 5e. Clickable table-of-contents menu
+PreTeXt reveal has **no** built-in TOC/menu and **no** source hook for page JavaScript:
+`<tableofcontents>` in a slideshow is silently ignored, and slide `<xref>`s render as plain
+non-clickable text (the revealjs XSL kills xref links on purpose). So the "☰ Contents" menu
+is a self-contained script, `assets/toc-menu.js` — it reads the slide titles from the DOM
+and jumps with `Reveal.slide()`. It is loaded into each built deck by appending
+`<script src="external/toc-menu.js"></script>` before `</body>`, done by
+`scripts/inject-toc.py` (idempotent; only edits files containing `Reveal.initialize`, i.e.
+deck entry pages, never the applet frame pages).
+- **Deploy:** the Actions workflow runs the inject step after building, so published decks
+  get the menu.
+- **Local:** `pretext build`/`pretext view` do NOT inject. After building, run
+  `python3 scripts/inject-toc.py output/<target>` and open the file — or just press `Esc`
+  for reveal's built-in overview grid.
+
 ---
 
 ## 6. Verifying the deck (preview)
