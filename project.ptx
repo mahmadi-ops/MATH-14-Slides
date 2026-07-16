@@ -6,5 +6,10 @@
             source="main.ptx"
             publication="publication.ptx"
             output-dir="slides"/>
+    <target name="line-integrals"
+            format="revealjs"
+            source="line-integrals.ptx"
+            publication="publication.ptx"
+            output-dir="line-integrals"/>
   </targets>
 </project>
