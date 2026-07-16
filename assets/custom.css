@@ -149,19 +149,24 @@
 .reveal .example-like .heading .type,
 .reveal .example-like .heading .title { color: var(--gold); }
 
-/* ---- figures: compiled SVGs keep dark ink, so they sit on a paper mat ---- */
-/* (the tipped-in plate: a light mat with a hairline edge on the dark page) */
+/* ---- figures: drawn in paper-and-gold ink, transparent background ---- */
+/* (the TikZ sources set their own dark-ground colors, so the figures sit
+   directly on the slide like everything else) */
 .reveal .image-box img,
 .reveal figure img.contained,
 .reveal figure img {
-  max-height: 62vh;
-  width: auto;
+  width: 100%;
   height: auto;
-  background: var(--paper);
-  padding: 14px;
-  border: 1px solid var(--rule) !important;
-  border-radius: 2px;
+  max-height: 62vh;
+  object-fit: contain;
+  background: transparent;
+  border: none !important;
   box-shadow: none;
+}
+.reveal .image-box,
+.reveal figure.figure-like .image-box {
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 /* GeoGebra / iframe interactives (other sections): same plate treatment */
@@ -179,8 +184,8 @@
   height: min(80vh, 660px) !important;
   margin: 0 auto !important;
   display: block;
-  border: 1px solid var(--rule);
-  background: #fff;
+  border: none;
+  background: transparent;
 }
 .reveal iframe#fig2-work-paths {
   width: 44vh !important;

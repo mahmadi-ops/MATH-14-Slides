@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Helical wire</title>
 <style>
-  html, body { margin: 0; height: 100%; background: #fff;
-               font-family: "Times New Roman", Georgia, serif; }
+  html, body { margin: 0; height: 100%; background: #16130f;
+               font-family: "Lora", Georgia, "Times New Roman", serif; }
   #plot { width: 100%; height: 100%; }
 </style>
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
@@ -14,7 +14,9 @@
 <body>
 <div id="plot"></div>
 <script>
-  var TIMES = '"Times New Roman", Georgia, serif';
+  var SERIF = '"Lora", Georgia, "Times New Roman", serif';
+  var PAPER = '#f3f2f2', GOLD = '#b68235', MUTED = '#a9a6a1';
+  var GRID = 'rgba(243,242,242,0.18)', ZERO = 'rgba(243,242,242,0.4)';
   var N = 220, tmax = Math.PI / 2, t = [];
   for (var i = 0; i <= N; i++) t.push(i * tmax / N);
 
@@ -26,33 +28,41 @@
   var wire = {
     type: 'scatter3d', mode: 'lines',
     x: wx, y: wy, z: wz,
-    line: { color: '#1e50c8', width: 9 },
+    line: { color: GOLD, width: 9 },
     hoverinfo: 'skip'
   };
   var shadow = {
     type: 'scatter3d', mode: 'lines',
     x: wx, y: wy, z: sz,
-    line: { color: '#9aa0a6', width: 5, dash: 'dash' },
+    line: { color: 'rgba(243,242,242,0.45)', width: 5, dash: 'dash' },
     hoverinfo: 'skip'
   };
   var ends = {
     type: 'scatter3d', mode: 'markers+text',
     x: [1, 0], y: [0, 1], z: [0, tmax],
-    text: ['(1, 0, 0),  t = 0', '(0, 1, π/2),  t = π/2'],
+    text: ['(1, 0, 0),  t = 0', '(0, 1, \u03c0/2),  t = \u03c0/2'],
     textposition: 'top center',
-    marker: { color: '#c0392b', size: 6 },
-    textfont: { size: 15, color: '#c0392b', family: TIMES },
+    marker: { color: PAPER, size: 6 },
+    textfont: { size: 15, color: PAPER, family: SERIF },
     hoverinfo: 'skip'
+  };
+
+  var axis = function (title, range) {
+    return { title: title, range: range, zeroline: true,
+             color: MUTED, gridcolor: GRID, zerolinecolor: ZERO,
+             showbackground: false };
   };
 
   var layout = {
     margin: { l: 0, r: 0, t: 0, b: 0 },
     showlegend: false,
-    font: { family: TIMES, size: 15, color: '#1f2328' },
+    paper_bgcolor: '#16130f',
+    font: { family: SERIF, size: 15, color: PAPER },
     scene: {
-      xaxis: { title: 'x', range: [-1.2, 1.2], zeroline: true },
-      yaxis: { title: 'y', range: [-1.2, 1.2], zeroline: true },
-      zaxis: { title: 'z', range: [0, 1.7] },
+      bgcolor: '#16130f',
+      xaxis: axis('x', [-1.2, 1.2]),
+      yaxis: axis('y', [-1.2, 1.2]),
+      zaxis: axis('z', [0, 1.7]),
       aspectmode: 'cube',
       camera: { eye: { x: 1.5, y: -1.7, z: 0.9 } }
     }
