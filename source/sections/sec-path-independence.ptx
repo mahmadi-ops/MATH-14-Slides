@@ -57,50 +57,51 @@
   <slide>
         <title>Chain Rule Behind the Theorem</title>
 
-        <!-- 2D figure: chain-rule dependency diagram (PreFigure) -->
+        <!-- 2D figure: chain-rule dependency diagram (TikZ, dark-ground colors) -->
         <figure>
           <caption>Chain rule dependency diagram for <m>w = f(x,y,z)</m> with <m>x</m>, <m>y</m>, <m>z</m> depending on <m>t</m></caption>
           <image xml:id="img-chain-rule" width="60%">
             <shortdescription>Tree diagram showing w depending on x, y, z, each depending on t</shortdescription>
-            <prefigure xmlns="https://prefigure.org" label="chain-rule-diagram">
-              <diagram dimensions="(520, 320)" margins="5">
-                <coordinates bbox="(-4.5, -5.6, 11, 4)">
-                  <!-- edges: w to intermediate variables -->
-                  <line endpoints="((-0.15, 2.75), (-2.4, 0.8))" stroke="#0aa"/>
-                  <line endpoints="((0, 2.7), (0, 0.85))" stroke="#0aa"/>
-                  <line endpoints="((0.15, 2.75), (2.4, 0.8))" stroke="#0aa"/>
-                  <!-- edges: intermediate variables to t -->
-                  <line endpoints="((-2.3, 0.3), (-0.15, -2.3))" stroke="#0aa"/>
-                  <line endpoints="((0, 0.3), (0, -2.3))" stroke="#0aa"/>
-                  <line endpoints="((2.3, 0.3), (0.15, -2.3))" stroke="#0aa"/>
-                  <!-- nodes -->
-                  <point p="(0, 3)" size="3" fill="#0aa" stroke="none"/>
-                  <point p="(-2.5, 0.55)" size="3" fill="#0aa" stroke="none"/>
-                  <point p="(0, 0.55)" size="3" fill="#0aa" stroke="none"/>
-                  <point p="(2.5, 0.55)" size="3" fill="#0aa" stroke="none"/>
-                  <point p="(0, -2.5)" size="3" fill="#0aa" stroke="none"/>
-                  <!-- node labels -->
-                  <label anchor="(0, 3.1)" alignment="n"><m>w = f(x,y,z)</m></label>
-                  <label anchor="(-2.7, 0.55)" alignment="w"><m>x</m></label>
-                  <label anchor="(0.2, 0.4)" alignment="se"><m>y</m></label>
-                  <label anchor="(2.7, 0.55)" alignment="e"><m>z</m></label>
-                  <label anchor="(0, -2.7)" alignment="s"><m>t</m></label>
-                  <!-- edge labels -->
-                  <label anchor="(-1.6, 2.1)" alignment="w"><m>\dfrac{\partial w}{\partial x}</m></label>
-                  <label anchor="(-0.15, 1.7)" alignment="w"><m>\dfrac{\partial w}{\partial y}</m></label>
-                  <label anchor="(1.6, 2.1)" alignment="e"><m>\dfrac{\partial w}{\partial z}</m></label>
-                  <label anchor="(-1.5, -1.1)" alignment="w"><m>\dfrac{dx}{dt}</m></label>
-                  <label anchor="(0.15, -0.9)" alignment="e"><m>\dfrac{dy}{dt}</m></label>
-                  <label anchor="(1.5, -1.1)" alignment="e"><m>\dfrac{dz}{dt}</m></label>
-                  <!-- side annotations -->
-                  <label anchor="(4.6, 3.2)" alignment="e">Dependent variable</label>
-                  <label anchor="(4.6, 0.55)" alignment="e">Intermediate variables</label>
-                  <label anchor="(4.6, -2.6)" alignment="e">Independent variable</label>
-                  <!-- resulting chain rule -->
-                  <label anchor="(0, -4)" alignment="s"><m>\dfrac{dw}{dt} = \dfrac{\partial w}{\partial x}\dfrac{dx}{dt} + \dfrac{\partial w}{\partial y}\dfrac{dy}{dt} + \dfrac{\partial w}{\partial z}\dfrac{dz}{dt}</m></label>
-                </coordinates>
-              </diagram>
-            </prefigure>
+            <latex-image>
+              \begin{tikzpicture}[x=1cm,y=1cm]
+              \definecolor{paper}{HTML}{F3F2F2}
+              \definecolor{gold}{HTML}{B68235}
+              \definecolor{mutedp}{HTML}{8F8C87}
+              % edges: w to intermediate variables
+              \draw[gold] (-0.15,2.75) -- (-2.4,0.8);
+              \draw[gold] (0,2.7) -- (0,0.85);
+              \draw[gold] (0.15,2.75) -- (2.4,0.8);
+              % edges: intermediate variables to t
+              \draw[gold] (-2.3,0.3) -- (-0.15,-2.3);
+              \draw[gold] (0,0.3) -- (0,-2.3);
+              \draw[gold] (2.3,0.3) -- (0.15,-2.3);
+              % nodes
+              \fill[gold] (0,3) circle (2.6pt);
+              \fill[gold] (-2.5,0.55) circle (2.6pt);
+              \fill[gold] (0,0.55) circle (2.6pt);
+              \fill[gold] (2.5,0.55) circle (2.6pt);
+              \fill[gold] (0,-2.5) circle (2.6pt);
+              % node labels
+              \node[paper, above] at (0,3.1) {\(w = f(x,y,z)\)};
+              \node[paper, left] at (-2.7,0.55) {\(x\)};
+              \node[paper, below right] at (0.2,0.4) {\(y\)};
+              \node[paper, right] at (2.7,0.55) {\(z\)};
+              \node[paper, below] at (0,-2.7) {\(t\)};
+              % edge labels
+              \node[paper, left] at (-1.6,2.1) {\(\dfrac{\partial w}{\partial x}\)};
+              \node[paper, left] at (-0.15,1.7) {\(\dfrac{\partial w}{\partial y}\)};
+              \node[paper, right] at (1.6,2.1) {\(\dfrac{\partial w}{\partial z}\)};
+              \node[paper, left] at (-1.5,-1.1) {\(\dfrac{dx}{dt}\)};
+              \node[paper, right] at (0.15,-0.9) {\(\dfrac{dy}{dt}\)};
+              \node[paper, right] at (1.5,-1.1) {\(\dfrac{dz}{dt}\)};
+              % side annotations
+              \node[mutedp, anchor=west] at (4.6,3.2) {Dependent variable};
+              \node[mutedp, anchor=west] at (4.6,0.55) {Intermediate variables};
+              \node[mutedp, anchor=west] at (4.6,-2.6) {Independent variable};
+              % resulting chain rule
+              \node[paper, below] at (2.2,-3.9) {\(\dfrac{dw}{dt} = \dfrac{\partial w}{\partial x}\dfrac{dx}{dt} + \dfrac{\partial w}{\partial y}\dfrac{dy}{dt} + \dfrac{\partial w}{\partial z}\dfrac{dz}{dt}\)};
+              \end{tikzpicture}
+            </latex-image>
           </image>
         </figure>
       </slide>
@@ -153,16 +154,17 @@
           <interactive xml:id="ggb-two-paths" platform="geogebra" width="96%" aspect="16:9">
             <slate xml:id="ggb-two-paths-slate" surface="geogebra">
               setPerspective("T")
+              evalCommand("SetBackgroundColor(\"#16130F\")")
               evalCommand("A=(1,0,0)")
               evalCommand("B=(1,0,2*pi)")
               evalCommand("C_1=Curve(cos(t),sin(t),t,t,0,2*pi)")
               evalCommand("C_2=Segment(A,B)")
-              setColor("C_1",25,25,25)
+              setColor("C_1",235,234,232)
               setLineThickness("C_1",5)
-              setColor("C_2",200,40,40)
+              setColor("C_2",182,130,53)
               setLineThickness("C_2",5)
-              setColor("A",25,25,25)
-              setColor("B",25,25,25)
+              setColor("A",235,234,232)
+              setColor("B",235,234,232)
               setPointSize("A",5)
               setPointSize("B",5)
               setLabelVisible("A",true)
