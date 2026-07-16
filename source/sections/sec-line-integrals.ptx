@@ -249,36 +249,35 @@
           <caption>
             The helical wire <m>\vr(t)=\langle\cos t,\sin t,t\rangle</m> for
             <m>0\le t\le \pi/2</m>, from <m>(1,0,0)</m> to <m>(0,1,\pi/2)</m>.
-            The dashed gray curve is its shadow on the plane <m>z=0</m>.
+            The dashed gray curve is its shadow on the plane <m>z=0</m>
+            (drag to rotate).
           </caption>
-          <image xml:id="li-helix-wire" width="65%">
-            <shortdescription>
-              A quarter turn of a helix rising from (1,0,0) to (0,1,pi/2), with
-              its shadow on the floor.
-            </shortdescription>
-            <latex-image>
-              \begin{tikzpicture}
-              \begin{axis}[
-                  width=10cm, view={115}{20},
-                  xlabel={\(x\)}, ylabel={\(y\)}, zlabel={\(z\)},
-                  xmin=-1.2, xmax=1.2, ymin=-1.2, ymax=1.2, zmin=0, zmax=1.8,
-                  grid=major, grid style={gray!20}, clip=false,
-                ]
-                % shadow on the ground z=0
-                \addplot3[gray!50, dashed, thin, domain=0:90, samples=60, samples y=0]
-                    ({cos(x)}, {sin(x)}, {0});
-                % the helix-shaped wire
-                \addplot3[blue, very thick, domain=0:90, samples=80, samples y=0]
-                    ({cos(x)}, {sin(x)}, {pi*x/180});
-                % endpoints
-                \addplot3[only marks, mark=*, red, mark size=1.6pt] coordinates
-                    {(1,0,0) (0,1,1.5708)};
-                \node[anchor=south west, xshift=5pt, yshift=2pt] at (axis cs:1,0,0) {\((1,0,0),\ t=0\)};
-                \node[above left=1pt] at (axis cs:0,1,1.5708) {\((0,1,\pi/2),\ t=\pi/2\)};
-              \end{axis}
-              \end{tikzpicture}
-            </latex-image>
-          </image>
+          <interactive xml:id="ggb-helix-wire" platform="geogebra" width="62%" aspect="1:1">
+            <slate xml:id="ggb-helix-wire-slate" surface="geogebra">
+              setPerspective("T")
+              evalCommand("A=(1,0,0)")
+              evalCommand("B=(0,1,pi/2)")
+              evalCommand("wire=Curve(cos(t),sin(t),t,t,0,pi/2)")
+              evalCommand("shadow=Curve(cos(t),sin(t),0,t,0,pi/2)")
+              setColor("wire",30,80,200)
+              setLineThickness("wire",6)
+              setColor("shadow",150,150,150)
+              setLineStyle("shadow",1)
+              setLineThickness("shadow",3)
+              setColor("A",200,40,40)
+              setColor("B",200,40,40)
+              setPointSize("A",5)
+              setPointSize("B",5)
+              setLabelVisible("A",true)
+              setLabelVisible("B",true)
+              setLabelVisible("wire",false)
+              setLabelVisible("shadow",false)
+              evalCommand("SetViewDirection(Vector((1.4,-2.3,1.0)))")
+              setAxesVisible(true,true,true)
+              setWidth(900)
+              setHeight(560)
+            </slate>
+          </interactive>
         </figure>
       </slide>
 </section>

@@ -26,7 +26,8 @@
     '.rtoc-head:hover{text-decoration:underline}',
     '.rtoc-panel a{display:block;padding:.4rem 1.3rem .4rem 1.7rem;color:#1f2328;',
     'text-decoration:none;font-size:.95rem;cursor:pointer}',
-    '.rtoc-panel a:hover{background:#eef2ff;color:#1565c0}'
+    '.rtoc-panel a:hover{background:#eef2ff;color:#1565c0}',
+    '.rtoc-panel a.rtoc-active{background:#e7e9ff;color:#5b57d1;font-weight:700}'
   ].join('');
 
   function ready(fn) {
@@ -58,35 +59,38 @@
     heading.textContent = 'Contents';
     panel.appendChild(heading);
 
+    var items = [];
     Reveal.getSlides().forEach(function (s) {
       var head = s.querySelector('h1, h2, h3');
       if (!head) return;
+      var tag = head.tagName.toLowerCase();
+      if (tag !== 'h1' && tag !== 'h2') return;   // section-level titles only
       var title = head.textContent.trim();
       if (!title) return;
-      var tag = head.tagName.toLowerCase();
       var idx = Reveal.getIndices(s);
-      if (tag === 'h1' || tag === 'h2') {
-        var hd = document.createElement('a');
-        hd.className = 'rtoc-head';
-        hd.textContent = title;
-        hd.addEventListener('click', function () {
-          Reveal.slide(idx.h, idx.v);
-          closeM();
-        });
-        panel.appendChild(hd);
-      } else {
-        var a = document.createElement('a');
-        a.textContent = title;
-        a.addEventListener('click', function () {
-          Reveal.slide(idx.h, idx.v);
-          closeM();
-        });
-        panel.appendChild(a);
-      }
+      var el = document.createElement('a');
+      el.className = 'rtoc-head';
+      el.textContent = title;
+      el._h = idx.h;                              // highlight when this section is active
+      el.addEventListener('click', function () {
+        Reveal.slide(idx.h, idx.v);
+        closeM();
+      });
+      panel.appendChild(el);
+      items.push(el);
     });
 
-    function openM() { panel.classList.add('open'); back.classList.add('open'); }
+    function openM() { panel.classList.add('open'); back.classList.add('open'); highlight(); }
     function closeM() { panel.classList.remove('open'); back.classList.remove('open'); }
+
+    function highlight() {
+      var cur = Reveal.getIndices();
+      items.forEach(function (it) {
+        var on = it._h === cur.h;
+        it.classList.toggle('rtoc-active', on);
+        if (on && panel.classList.contains('open')) it.scrollIntoView({ block: 'nearest' });
+      });
+    }
 
     btn.addEventListener('click', openM);
     back.addEventListener('click', closeM);
@@ -99,5 +103,8 @@
     document.body.appendChild(btn);
     document.body.appendChild(back);
     document.body.appendChild(panel);
+
+    Reveal.on('slidechanged', highlight);
+    highlight();
   });
 })();

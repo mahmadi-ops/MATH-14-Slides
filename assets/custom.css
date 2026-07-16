@@ -89,6 +89,13 @@
   display: block;
   border: none;
 }
+.reveal iframe#ggb-helix-wire {
+  width: min(90vw, 900px) !important;
+  height: min(72vh, 560px) !important;
+  margin: 0 auto !important;
+  display: block;
+  border: none;
+}
 /* Figure 2 shares its slide with two questions, so keep it moderate.
    Square frame so the (square) construction fills it and stays centered,
    with a gap below before the questions. */
